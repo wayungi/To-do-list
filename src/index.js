@@ -15,3 +15,7 @@ const toDoTasks = [
     index: 2
   }
 ]
+
+const populateToDoList = (toDoTasks) => {
+  
+}
