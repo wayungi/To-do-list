@@ -4,12 +4,28 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/f7fd89fce9.js" crossorigin="anonymous"></script>
   <title>To do list App</title>
 </head>
 <body>
   <div class="container">
-    <ul class="todo">
-    </ul>
+    <div class="todo">
+      <!-- to do list title section -->
+      <div class="title-bar">
+        <h1 class="title">Today's To Do</h1>
+        <div class="refresh">
+          <i class="fa-solid fa-rotate"></i>
+        </div>
+      </div>
+      <!-- to do list form section to add items -->
+      <form action="index.html">
+        <input type="text" class="add-item" placeholder="Add to your list..." aria-label="enter todo activity">
+        <!-- activity display area -->
+      <ul class="todo-list">
+      </ul>
+      <input type="submit" value="Clear all completed" aria-label="button to submit form"/>
+      </form>
+  </div>
   </div>
 </body>
 </html>
