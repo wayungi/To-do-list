@@ -21,5 +21,6 @@ const toDoTasks = [
 ]
 
 
-
-AppInterface.populateToDoList(toDoTasks);
+document.addEventListener('DOMContentLoaded', () => {
+  AppInterface.populateToDoList(toDoTasks);
+})

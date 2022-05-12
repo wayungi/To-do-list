@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _ui_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ui.js */ \"./src/ui.js\");\n\n\n\n\nconst toDoTasks = [\n  {\n    description:'Watch the chelsea match',\n    completed: false,\n    index: 0\n  },\n  {\n    description:'Take a nap',\n    completed: false,\n    index: 1\n  },\n  {\n    description:'Complete the todo app',\n    completed: false,\n    index: 2\n  }\n]\n\n\n\n_ui_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].populateToDoList(toDoTasks);\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _ui_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ui.js */ \"./src/ui.js\");\n\n\n\n\nconst toDoTasks = [\n  {\n    description:'Watch the chelsea match',\n    completed: false,\n    index: 0\n  },\n  {\n    description:'Take a nap',\n    completed: false,\n    index: 1\n  },\n  {\n    description:'Complete the todo app',\n    completed: false,\n    index: 2\n  }\n]\n\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  _ui_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].populateToDoList(toDoTasks);\n})\n\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
   \*******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ AppInterface)\n/* harmony export */ });\nclass AppInterface {\n\n  static populateToDoList = (tasks) => {\n    const list = document.querySelector('.todo');\n    for(let i=0; i<tasks.length; i++){\n      const listItem = document.createElement('li');\n      listItem.textContent = tasks[i].description;\n      list.appendChild(listItem);\n    }\n  }\n\n  \n}\n\n//# sourceURL=webpack://to-do-list/./src/ui.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ AppInterface)\n/* harmony export */ });\nclass AppInterface {\n\n  static populateToDoList = (tasks) => {\n    // imporvements needed = get list from locat storage\n    const list = document.querySelector('.todo');\n    for(let i=0; i<tasks.length; i++){\n      const listItem = document.createElement('li');\n      listItem.textContent = tasks[i].description;\n      list.appendChild(listItem);\n    }\n  }\n\n\n}\n\n//# sourceURL=webpack://to-do-list/./src/ui.js?");
 
 /***/ })
 
