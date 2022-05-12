@@ -1,5 +1,7 @@
 export default class AppInterface {
 
+  static length = 3;
+
   static populateToDoList = (tasks) => {
     // imporvements needed = get list from locat storage
     const list = document.querySelector('.todo-list');
@@ -8,6 +10,16 @@ export default class AppInterface {
       listItem.textContent = tasks[i].description;
       list.appendChild(listItem);
     }
+  }
+
+  static incrementIndex = () => {
+    this.length += 1;
+    return this.length;
+  }
+
+  static decrementIndex = () => {
+    this.length -= 1;
+    return this.length;
   }
 
 

@@ -1,6 +1,8 @@
 import './style.css';
 import AppInterface from './ui.js';
 
+const form = document.querySelector('.todo-form');
+const inputActivity = document.querySelector('.add-item');
 
 const toDoTasks = [
   {
@@ -20,7 +22,27 @@ const toDoTasks = [
   }
 ]
 
+console.log(toDoTasks);
 
+// populate the todo list on page load
 document.addEventListener('DOMContentLoaded', () => {
   AppInterface.populateToDoList(toDoTasks);
+});
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const activity = inputActivity.value
+  inputActivity.value = '';
+  const task = {
+    description: activity,
+    completed: false,
+    index:AppInterface.incrementIndex()
+  }
+
+  // rough
+  toDoTasks.push(task);
+  console.log(toDoTasks);
+
 })
+
+
