@@ -1,8 +1,4 @@
 export default class AppInterface {
-  // <i class="fa-solid fa-ellipsis-vertical"></i>
-  // <i class="fa-solid fa-trash"></i>
-  // <i class="fa-solid fa-turn-down-left"></i>
-
   static length = 0;
 
   static populateToDoList = (tasks) => {
