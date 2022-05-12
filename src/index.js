@@ -47,7 +47,8 @@ form.addEventListener('submit', (e) => {
   toDoTasks.push(task);
   //Update the interface
   AppInterface.addTaskToList(task);
-  console.log(toDoTasks);
+  //update local storage
+  store.updateStorage(toDoTasks);
 
 })
 
