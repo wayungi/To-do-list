@@ -1,5 +1,5 @@
-export default class Storage {
- 
+export default class Storage{
+
   checkStorage = () => {
     const todoList = localStorage.getItem('todoList');
     return todoList ? JSON.parse(todoList) : [];
