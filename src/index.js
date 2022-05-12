@@ -11,15 +11,15 @@ const toDoTasks = [
     index: 0
   },
   {
+    description:'Complete the todo app',
+    completed: false,
+    index: 2
+  },
+  {
     description:'Take a nap',
     completed: false,
     index: 1
   },
-  {
-    description:'Complete the todo app',
-    completed: false,
-    index: 2
-  }
 ]
 
 console.log(toDoTasks);
