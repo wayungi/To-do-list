@@ -1,5 +1,9 @@
 export default class AppInterface {
 
+  // <i class="fa-solid fa-ellipsis-vertical"></i>
+  //<i class="fa-solid fa-trash"></i>
+  //<i class="fa-solid fa-turn-down-left"></i>
+
   static length = 0;
 
   static populateToDoList = (tasks) => {
@@ -15,15 +19,21 @@ export default class AppInterface {
 
       const activityDiv = document.createElement('div');
 
+      //create ellipsis 
+      const ellipsis = document.createElement('div');
+      ellipsis.innerHTML = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
+      ellipsis.classList.add('ellipsis');
+      //create paragraph
       const par = document.createElement('p');
       par.textContent = tasks[i].description;
-
+      par.classList.add('activity-desc')
       // create a checkbox
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
 
       activityDiv.appendChild(checkbox);
       activityDiv.appendChild(par);
+      activityDiv.appendChild(ellipsis);
       outerDiv.appendChild(activityDiv);
     }
   }

@@ -56,6 +56,18 @@ input.add-item:focus{
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  /* border:1px solid green; */
+}
+
+p.activity-desc {
+  padding: 0 5px;
+  width:100%;
+  /* outline:1px solid pink; */
+}
+
+/* remove subtle border on ellipsis div */
+div.ellipsis {
+  border:none;
 }
 
 /* to do list button */
@@ -65,6 +77,3 @@ input.add-item:focus{
   cursor: pointer;
 }
 
-input[type='checkbox'] {
-  order:2;
-}

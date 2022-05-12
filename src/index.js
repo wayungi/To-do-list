@@ -47,12 +47,9 @@ form.addEventListener('submit', (e) => {
       completed: false,
       index:AppInterface.incrementIndex()
     }
-    // update the array
+    // perfome updates
     toDoTasks.push(task);
-    //console.log(toDoTasks);
-    //Update the interface
     AppInterface.addTaskToList(task);
-    //update local storage
     store.updateStorage(toDoTasks);
   }
   
