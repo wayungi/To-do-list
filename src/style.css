@@ -53,6 +53,10 @@ input.add-item:focus{
 
 .todo-list li{
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 /* to do list button */

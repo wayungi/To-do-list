@@ -15,9 +15,8 @@ export default class AppInterface {
       // create a checkbox
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      listItem.appendChild(checkbox);
       listItem.textContent = tasks[i].description;
-
-      list.appendChild(checkbox);
       list.appendChild(listItem);
     }
   }
@@ -27,11 +26,9 @@ export default class AppInterface {
     const list = document.querySelector('.todo-list');
     const listItem = document.createElement('li');
     listItem.textContent = task.description;
-
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    
-    list.appendChild(checkbox);
+    listItem.appendChild(checkbox);
     list.appendChild(listItem);
   }
 
