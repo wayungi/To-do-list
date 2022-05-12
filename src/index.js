@@ -1,5 +1,8 @@
 import './style.css';
 import AppInterface from './ui.js';
+import Storage from './storage.js';
+
+const store = new Storage();
 
 const form = document.querySelector('.todo-form');
 const inputActivity = document.querySelector('.add-item');
@@ -33,6 +36,7 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const activity = inputActivity.value
   inputActivity.value = '';
+  // create todo activity object
   const task = {
     description: activity,
     completed: false,
