@@ -16,9 +16,7 @@ export default class AppInterface {
 
     const outerDiv = document.querySelector('.todo-list');
     for(let i=0; i<tasks.length; i++){
-
       const activityDiv = document.createElement('div');
-
       //create ellipsis 
       const ellipsis = document.createElement('div');
       ellipsis.innerHTML = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
@@ -41,16 +39,26 @@ export default class AppInterface {
   // Add a todo task to the interface
   static addTaskToList = (task) => {
     const outerDiv = document.querySelector('.todo-list');
+
     const activityDiv = document.createElement('div');
+     //create ellipsis 
+     const ellipsis = document.createElement('div');
+     ellipsis.innerHTML = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
+     ellipsis.classList.add('ellipsis');
     // create the checkbox & appenf to li
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    // create activity description
     const par = document.createElement('p');
     par.textContent = task.description;
+    par.classList.add('activity-desc')
+
     activityDiv.appendChild(checkbox);
     activityDiv.appendChild(par);
+    activityDiv.appendChild(ellipsis);
     outerDiv.appendChild(activityDiv);
   }
+  
 
   static incrementIndex = () => {
     this.length += 1;
