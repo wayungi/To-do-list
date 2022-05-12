@@ -22,13 +22,14 @@
 
 .title-bar {
   padding: 5px;
-  border-bottom:1px solid rgba(211,211,211, 0.5);
 }
 
 .title-bar,
-input.add-item  {
+input.add-item,
+li,
+.submit-btn  {
   border-bottom:1px solid rgba(211,211,211, 0.5);
-
+  padding:10px 10px;
 }
 
 .container h1 {
@@ -36,18 +37,28 @@ input.add-item  {
 }
 
 form {
-  /* outline:1px solid red; */
   display:flex;
   flex-direction: column;
 }
 
 input.add-item {
   width:100%;
-  padding:5px 10px;
   box-sizing: border-box;
   font-size: 1.5em;
 }
 
 input.add-item:focus{
   outline:none;
+}
+
+.todo-list li{
+  list-style: none;
+}
+
+/* to do list button */
+.submit-btn {
+  width: 100%;
+  background-color: rgba(211,211,211, 0.3);
+  cursor: pointer;
+  
 }
