@@ -23,13 +23,14 @@ const toDoTasks = [
     completed: false,
     index: 1
   },
-]
-
-console.log(toDoTasks);
+];
 
 // populate the todo list on page load
 document.addEventListener('DOMContentLoaded', () => {
-  AppInterface.populateToDoList(toDoTasks);
+  const taskArray = store.checkStorage();
+  if(taskArray.length > 0){
+    AppInterface.populateToDoList(taskArray);
+  }
 });
 
 form.addEventListener('submit', (e) => {
