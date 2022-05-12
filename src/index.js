@@ -1,3 +1,7 @@
+import './style.css';
+import AppInterface from './ui.js';
+
+
 const toDoTasks = [
   {
     description:'Watch the chelsea match',
@@ -16,6 +20,6 @@ const toDoTasks = [
   }
 ]
 
-const populateToDoList = (toDoTasks) => {
-  
-}
+
+
+AppInterface.populateToDoList(toDoTasks);
