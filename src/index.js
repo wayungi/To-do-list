@@ -43,8 +43,10 @@ form.addEventListener('submit', (e) => {
     index:AppInterface.incrementIndex()
   }
 
-  // rough
+  // update the array
   toDoTasks.push(task);
+  //Update the interface
+  AppInterface.addTaskToList(task);
   console.log(toDoTasks);
 
 })

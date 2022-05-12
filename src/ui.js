@@ -4,7 +4,7 @@ export default class AppInterface {
 
   static populateToDoList = (tasks) => {
     // imporvements needed = get list from locat storage
-    
+
     // sort the array of tasks
     tasks.sort((a, b) => { 
       return a.index - b.index
@@ -16,6 +16,14 @@ export default class AppInterface {
       listItem.textContent = tasks[i].description;
       list.appendChild(listItem);
     }
+  }
+
+  // Add a todo task to the interface
+  static addTaskToList = (task) => {
+    const list = document.querySelector('.todo-list');
+    const listItem = document.createElement('li');
+    listItem.textContent = task.description;
+    list.appendChild(listItem);
   }
 
   static incrementIndex = () => {
