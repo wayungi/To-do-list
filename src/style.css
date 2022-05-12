@@ -26,7 +26,7 @@
 
 .title-bar,
 input.add-item,
-li,
+.todo-list div,
 .submit-btn  {
   border-bottom:1px solid rgba(211,211,211, 0.5);
   padding:10px 10px;
@@ -51,8 +51,7 @@ input.add-item:focus{
   outline:none;
 }
 
-.todo-list li{
-  list-style: none;
+.todo-list div{
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -62,7 +61,10 @@ input.add-item:focus{
 /* to do list button */
 .submit-btn {
   width: 100%;
-  background-color: rgba(211,211,211, 0.3);
+  background-color: rgba(211, 211, 211, 0.3);
   cursor: pointer;
-  
+}
+
+input[type='checkbox'] {
+  order:2;
 }

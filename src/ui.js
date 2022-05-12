@@ -1,6 +1,6 @@
 export default class AppInterface {
 
-  static length = 3;
+  static length = 0;
 
   static populateToDoList = (tasks) => {
     // imporvements needed = get list from locat storage
@@ -9,27 +9,37 @@ export default class AppInterface {
     tasks.sort((a, b) => { 
       return a.index - b.index
     });
-    const list = document.querySelector('.todo-list');
+
+    const outerDiv = document.querySelector('.todo-list');
     for(let i=0; i<tasks.length; i++){
-      const listItem = document.createElement('li');
+
+      const activityDiv = document.createElement('div');
+
+      const par = document.createElement('p');
+      par.textContent = tasks[i].description;
+
       // create a checkbox
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      listItem.appendChild(checkbox);
-      listItem.textContent = tasks[i].description;
-      list.appendChild(listItem);
+
+      activityDiv.appendChild(checkbox);
+      activityDiv.appendChild(par);
+      outerDiv.appendChild(activityDiv);
     }
   }
 
   // Add a todo task to the interface
   static addTaskToList = (task) => {
-    const list = document.querySelector('.todo-list');
-    const listItem = document.createElement('li');
-    listItem.textContent = task.description;
+    const outerDiv = document.querySelector('.todo-list');
+    const activityDiv = document.createElement('div');
+    // create the checkbox & appenf to li
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    listItem.appendChild(checkbox);
-    list.appendChild(listItem);
+    const par = document.createElement('p');
+    par.textContent = task.description;
+    activityDiv.appendChild(checkbox);
+    activityDiv.appendChild(par);
+    outerDiv.appendChild(activityDiv);
   }
 
   static incrementIndex = () => {
