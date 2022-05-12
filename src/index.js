@@ -35,22 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const activity = inputActivity.value
-  inputActivity.value = '';
-  // create todo activity object
-  const task = {
-    description: activity,
-    completed: false,
-    index:AppInterface.incrementIndex()
+  const activity = inputActivity.value;
+
+  if(activity !== ''){
+    inputActivity.value = '';
+    // create todo activity object
+    const task = {
+      description: activity,
+      completed: false,
+      index:AppInterface.incrementIndex()
+    }
+    // update the array
+    toDoTasks.push(task);
+    //Update the interface
+    AppInterface.addTaskToList(task);
+    //update local storage
+    store.updateStorage(toDoTasks);
   }
-
-  // update the array
-  toDoTasks.push(task);
-  //Update the interface
-  AppInterface.addTaskToList(task);
-  //update local storage
-  store.updateStorage(toDoTasks);
-
+  
 })
 
 
