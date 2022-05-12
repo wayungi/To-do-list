@@ -1,14 +1,14 @@
-*{
-  margin:0;
-  padding:0;
-  font-size:12px;
-  border:none;
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  border: none;
 }
 
 .container {
-  height:100vh;
+  height: 100vh;
   box-sizing: border-box;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   flex-wrap: nowrap;
@@ -16,27 +16,27 @@
 }
 
 .todo {
-  width:50%;
-  box-shadow: 0 0 5px rgba(211,211,211, 0.5);
+  width: 50%;
+  box-shadow: 0 0 5px rgba(211, 211, 211, 0.5);
 }
 
 .title-bar {
   padding: 5px;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.refresh{
-  padding-right:7px;
+.refresh {
+  padding-right: 7px;
 }
 
 .title-bar,
 .todo-list div,
 .submit-btn,
-.field-group  {
-  border-bottom:1px solid rgba(211,211,211, 0.5);
-  padding:10px 10px;
+.field-group {
+  border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+  padding: 10px 10px;
 }
 
 .container h1 {
@@ -44,44 +44,44 @@
 }
 
 form {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
 .field-group {
-  display:flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
 input.add-item {
-  width:95%;
+  width: 95%;
   box-sizing: border-box;
   font-size: 1.5em;
-  padding:10px 10px;
+  padding: 10px 10px;
 }
 
-input.add-item:focus{
-  outline:none;
+input.add-item:focus {
+  outline: none;
 }
 
-.todo-list div{
+.todo-list div {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+
   /* border:1px solid green; */
 }
 
 p.activity-desc {
   padding: 0 5px;
-  width:100%;
-  /* outline:1px solid pink; */
+  width: 100%;
 }
 
 /* remove subtle border on ellipsis div */
 div.ellipsis {
-  border:none;
+  border: none;
 }
 
 /* to do list button */
@@ -90,4 +90,3 @@ div.ellipsis {
   background-color: rgba(211, 211, 211, 0.3);
   cursor: pointer;
 }
-
