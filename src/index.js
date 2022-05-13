@@ -2,11 +2,13 @@ import './style.css';
 import AppInterface from './ui.js';
 import Storage from './storage.js';
 
+const form = document.querySelector(".todo-form");
+const input = document.querySelector('.add-item');
+const toDosList = document.querySelector('.todos');
+
 const store = new Storage();
 let listLength = 0;
 
-const form = document.querySelector('.todo-form');
-const inputActivity = document.querySelector('.add-item');
 
 const toDoTasks = store.checkStorage();
 

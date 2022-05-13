@@ -70,10 +70,15 @@
   padding:5px 10px;
   box-sizing: border-box;
   border:none;
+  color:grey
 }
 
 .text:focus {
   outline:none;
+}
+
+.text:not(:read-only){
+  color:black;
 }
 
 .remove-completed {
@@ -85,6 +90,8 @@
   line-height: 40px;
   text-decoration: none;
   border:none;
+  background-color: rgba(211,211,211, 0.5);
+  color: rgba(115, 115, 115, 1)
 }
 
 

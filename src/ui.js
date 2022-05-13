@@ -1,4 +1,10 @@
 export default class AppInterface {
+  
+
+
+
+
+
   static populateToDoList = (tasks) => {
     tasks.sort((a, b) => a.index - b.index);
     const outerDiv = document.querySelector('.todo-list');
