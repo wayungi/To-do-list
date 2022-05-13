@@ -2,19 +2,19 @@ export default class AppInterface {
   static length = 0;
 
   static populateToDoList = (tasks) => {
-    // imporvements needed = get list from locat storage
-
     // sort the array of tasks
     tasks.sort((a, b) => a.index - b.index);
-
     const outerDiv = document.querySelector('.todo-list');
-
     tasks.forEach((task) => {
       const activityDiv = document.createElement('div');
       // create ellipsis
       const ellipsis = document.createElement('div');
       ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
       ellipsis.classList.add('ellipsis');
+      // create delete icon
+      const trashCan = document.createElement('div');
+      trashCan.innerHTML = '<i class="fa-solid fa-trash"></i>';
+      trashCan.classList.add('delete-icon', 'hide');
       // create paragraph
       const par = document.createElement('p');
       par.textContent = task.description;
@@ -23,31 +23,39 @@ export default class AppInterface {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
 
+      
+
       activityDiv.appendChild(checkbox);
       activityDiv.appendChild(par);
       activityDiv.appendChild(ellipsis);
+      activityDiv.appendChild(trashCan);
       outerDiv.appendChild(activityDiv);
+      //attach eventlisteners to the ellipsis and trashCan
+      this.attachListener(ellipsis,'click', this.enableDeleteBtn);
+      this.attachListener(trashCan, 'click',this.deleteActivity )
     });
+  }
 
-    // for (let i = 0; i < tasks.length; i++) {
-    // const activityDiv = document.createElement('div');
-    // // create ellipsis
-    // const ellipsis = document.createElement('div');
-    // ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
-    // ellipsis.classList.add('ellipsis');
-    // // create paragraph
-    // const par = document.createElement('p');
-    // par.textContent = tasks[i].description;
-    // par.classList.add('activity-desc');
-    // // create a checkbox
-    // const checkbox = document.createElement('input');
-    // checkbox.type = 'checkbox';
+  //Attach eventListener on creation of element
+  static attachListener = (element, event, func) => {
+    element.addEventListener(event, (e) => func(e));
+  }
 
-    // activityDiv.appendChild(checkbox);
-    // activityDiv.appendChild(par);
-    // activityDiv.appendChild(ellipsis);
-    // outerDiv.appendChild(activityDiv);
-    // }
+  // show delete icon and hide vertical elipsis
+  static enableDeleteBtn = (e) => {
+    // hide the clicked ellipsis
+    e.target.classList.add('hide');
+    //get the delete icon and make it display
+    e.target.nextElementSibling.classList.remove('hide');
+  }
+
+  static deleteActivity = (e) => {
+    console.log('delete activity');
+  }
+
+  // ==================test function to be deleted=====
+  static func = (e) => {
+    console.log(e);
   }
 
   // Add a todo task to the interface
@@ -59,6 +67,10 @@ export default class AppInterface {
     const ellipsis = document.createElement('div');
     ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
     ellipsis.classList.add('ellipsis');
+    // create delete icon
+    const trashCan = document.createElement('div');
+    trashCan.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    trashCan.classList.add('delete-icon', 'hide');
     // create the checkbox & appenf to li
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -70,7 +82,11 @@ export default class AppInterface {
     activityDiv.appendChild(checkbox);
     activityDiv.appendChild(par);
     activityDiv.appendChild(ellipsis);
+    activityDiv.appendChild(trashCan);
     outerDiv.appendChild(activityDiv);
+
+    this.attachListener(ellipsis,'click', this.func)
+
   }
 
   static incrementIndex = () => {
@@ -83,3 +99,5 @@ export default class AppInterface {
     return this.length;
   }
 }
+
+

@@ -80,8 +80,15 @@ p.activity-desc {
 }
 
 /* remove subtle border on ellipsis div */
-div.ellipsis {
+div.ellipsis,div.delete-icon {
   border: none;
+  cursor:pointer;
+  outline:1px solid green;
+}
+
+/* hide the display icon */
+div.hide {
+  display:none;
 }
 
 /* to do list button */
