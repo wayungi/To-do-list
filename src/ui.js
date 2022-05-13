@@ -6,6 +6,7 @@ export default class AppInterface {
     tasks.forEach((task) => {
 
       const activityDiv = document.createElement('div');
+      activityDiv.classList.add('main-activity');
       // create ellipsis
       const ellipsis = document.createElement('div');
       ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
@@ -24,14 +25,14 @@ export default class AppInterface {
       //create hidden field for element tracking purpose
       const hiddenField =  document.createElement('input');
       hiddenField.setAttribute('type', 'hidden');
-      hiddenField.value = task.index
+      hiddenField.value = task.index;
 
       activityDiv.appendChild(checkbox);
       activityDiv.appendChild(par);
       activityDiv.appendChild(ellipsis);
       activityDiv.appendChild(trashCan);
-      outerDiv.appendChild(activityDiv);
       activityDiv.appendChild(hiddenField);
+      outerDiv.appendChild(activityDiv);
       //attach eventlisteners to the ellipsis and trashCan
       this.attachListener(ellipsis,'click', this.enableDeleteBtn);
       this.attachListener(trashCan, 'click',this.deleteActivity )
@@ -48,17 +49,16 @@ export default class AppInterface {
     // hide the clicked ellipsis
     e.target.classList.add('hide');
     //get the delete icon and make it display
-    e.target.nextElementSibling.classList.remove('hide');
+    const parent = e.target.parentElement;
+    const deleteBtn = parent.querySelector('.delete-icon');
+    deleteBtn.classList.remove('hide');
   }
 
   static deleteActivity = (e) => {
+    console.log(e.target.parentElement);
     console.log('delete activity');
   }
 
-  // ==================test function to be deleted=====
-  static func = (e) => {
-    console.log(e);
-  }
 
   // Add a todo task to the interface
   static addTaskToList = (task) => {
