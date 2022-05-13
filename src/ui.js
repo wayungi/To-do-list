@@ -36,10 +36,11 @@ export default class AppInterface {
     edit.classList.add('fa-solid','fa-pen-to-square');
     this.addEditListener(edit);
     const save = document.createElement('i');
-    this.addSaveListener(save);
     save.classList.add('fa-solid', 'fa-floppy-disk');
+    this.addSaveListener(save);
     const trash = document.createElement('i');
     trash.classList.add('fa-solid', 'fa-trash');
+    this.addDeleteListener(trash);
     const ellipsis = document.createElement('i');
     ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
     const optionsEl = document.createElement('div');
@@ -69,6 +70,17 @@ export default class AppInterface {
       return;
     });
   };
+
+  addDeleteListener = elem => {
+    elem.addEventListener('click', (e) => {
+      const todo_task = e.target.parentElement.parentElement;
+      todo_task.remove();
+      return;
+    });
+  };
+
+
+
 
 
 
