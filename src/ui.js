@@ -1,6 +1,51 @@
 export default class AppInterface {
-  addTaskToToDosList = task => {
+  addTaskToToDosList = (task) => {
+    const toDoTaskElement = this.toDoTask();
+    const checkbox = this.createCheckBox();
+    const inputElement = this.createTextInput(task.description);
+    const optionsElement = this.createOptions();
+    toDoTaskElement.appendChild(checkbox);
+    toDoTaskElement.appendChild(inputElement);
+    toDoTaskElement.appendChild(optionsElement);
+    return toDoTaskElement;
+  }
 
+  toDoTask = () => {
+    const todoTaskEl = document.createElement('div');
+    todoTaskEl.classList.add('todo-task');
+    return todoTaskEl;
+  }
+
+  createCheckBox = () => {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    return checkbox;
+  }
+
+  createTextInput = inputValue => {
+    const input = document.createElement('input');
+    input.classList.add('text');
+    input.value = inputValue;
+    input.setAttribute('readonly', 'readonly');
+    return input;
+  }
+
+  createOptions = () => {
+    const edit = document.createElement('i');
+    edit.classList.add('fa-solid','fa-pen-to-square');
+    const save = document.createElement('i');
+    save.classList.add('fa-solid', 'fa-floppy-disk');
+    const trash = document.createElement('i');
+    trash.classList.add('fa-solid', 'fa-trash');
+    const ellipsis = document.createElement('i');
+    ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
+    const optionsEl = document.createElement('div');
+    optionsEl.classList.add('options')
+    optionsEl.appendChild(edit);
+    optionsEl.appendChild(save);
+    optionsEl.appendChild(trash);
+    optionsEl.appendChild(ellipsis);
+    return optionsEl;
   }
 
 
@@ -56,11 +101,7 @@ export default class AppInterface {
     return par;
   }
 
-  static createCheckBox = () => {
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    return checkbox;
-  }
+  
 
   static createHiddenInputField = (index) => {
     const input = document.createElement('input');

@@ -17,8 +17,8 @@ form.addEventListener('submit', (e) => {
   if(inputValue){
     listLength = listLength + 1;
     const task = new Task(inputValue, false, listLength);
-    console.log(task)
-    userInterface.addTaskToToDosList(task);
+    const todo_task = userInterface.addTaskToToDosList(task);
+    toDosList.appendChild(todo_task);
   }
 
 });
