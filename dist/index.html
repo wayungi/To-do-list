@@ -14,14 +14,13 @@
 
   <div class="container">
     <div class="todo">
-
       <div class="title-bar">
         <h1 class="title">Today's To Do</h1>
         <div class="refresh"><i class="fa-solid fa-rotate"></i></div>
       </div>
 
       <form action="index.html" class="todo-form">
-        <div class="field-group">
+        <div class="form-elements">
           <input type="text" class="add-item" id="add-new-activiy" placeholder="Add to your list..." aria-label="Enter todo activity">
           <div class="return"><i class="fa-regular fa-arrow-turn-down-left"></i></div>
         </div>
@@ -29,7 +28,7 @@
 
       <div class="todo-list">
         <div class="todos">
-          <div class="todo">
+          <div class="todo-task">
             <input type="checkbox" aria-label="checkbox"/>
             <input type="text" class="text" value="complete project" readonly aria-label="todo task">
             <div class="options">
@@ -39,16 +38,9 @@
               <i class="fa-solid fa-ellipsis-vertical"></i>
             </div>
           </div>
-
         </div>
-
       </div>
-
-        <!-- activity display area -->
-      <div class="todo-list">
-      </div>
-      <input type="reset" value="Clear all completed" aria-label="button to submit form" class="remove-completed" id="remove-completed-tasks"/>
-      
+      <a href="#" class="remove-completed" id="remove-completed-tasks">Clear all completed</a>
     </div>
   </div>
 </body>
