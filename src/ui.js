@@ -2,31 +2,28 @@ export default class AppInterface {
   static populateToDoList = (tasks) => {
     tasks.sort((a, b) => a.index - b.index);
     const outerDiv = document.querySelector('.todo-list');
-
     tasks.forEach((task) => {
-      const activityDiv = document.createElement('div');
-      activityDiv.classList.add('main-activity');
+      const taskContainer = this.createTaskContainer();
 
       const ellipsis = this.createEllipsisIcon();
       ellipsis.addEventListener('click', (e) => {
         ellipsis.classList.add('hide');
+        console.log(e.target.parentElement);
         const deleteBtn = e.target.parentElement.querySelector('.delete-icon');
         deleteBtn.classList.remove('hide');
       });
 
       const trashCan = this.createTrashCanIcon();
       trashCan.addEventListener('click', (e) => {
-        const mainactivity = document.querySelector('.main-activity');
-        mainactivity.remove();
-        // console.log(e.target.parentElement.parentElement);
-        // console.log('delete activity');
+        console.log(e.target.parentElement.parentElement);
+        console.log('delete activity');
       });
 
       const par = this.createToDoTask(task.description);
       const checkbox = this.createCheckBox();
       const hiddenField =  this.createHiddenInputField(task.index)
-      activityDiv.append(checkbox, par, ellipsis, trashCan, hiddenField);
-      outerDiv.appendChild(activityDiv);
+      taskContainer.append(checkbox, par, ellipsis, trashCan, hiddenField);
+      outerDiv.appendChild(taskContainer);
     });
   };
 
@@ -64,6 +61,11 @@ export default class AppInterface {
     return input;
   }
 
+  static createTaskContainer = () => {
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('main-activity');
+    return taskContainer
+  }
   // Add a todo task to the interface
   static addTaskToList = (task) => {
     const outerDiv = document.querySelector('.todo-list');

@@ -31,7 +31,6 @@ form.addEventListener('submit', (e) => {
       completed: false,
       index: listLength,
     };
-    console.log(listLength)
     // perfome updates
     toDoTasks.push(task);
     AppInterface.addTaskToList(task);
