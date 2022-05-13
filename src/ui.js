@@ -6,6 +6,7 @@ export default class AppInterface {
     tasks.sort((a, b) => a.index - b.index);
     const outerDiv = document.querySelector('.todo-list');
     tasks.forEach((task) => {
+
       const activityDiv = document.createElement('div');
       // create ellipsis
       const ellipsis = document.createElement('div');
@@ -22,14 +23,17 @@ export default class AppInterface {
       // create a checkbox
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-
-      
+      //create hidden field for element tracking purpose
+      const hiddenField =  document.createElement('input');
+      hiddenField.setAttribute('type', 'hidden');
+      hiddenField.value = task.index
 
       activityDiv.appendChild(checkbox);
       activityDiv.appendChild(par);
       activityDiv.appendChild(ellipsis);
       activityDiv.appendChild(trashCan);
       outerDiv.appendChild(activityDiv);
+      activityDiv.appendChild(hiddenField);
       //attach eventlisteners to the ellipsis and trashCan
       this.attachListener(ellipsis,'click', this.enableDeleteBtn);
       this.attachListener(trashCan, 'click',this.deleteActivity )
