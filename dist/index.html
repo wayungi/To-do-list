@@ -7,28 +7,48 @@
   <script src="https://kit.fontawesome.com/7a892cb0b1.js" crossorigin="anonymous"></script>  <title>To do list App</title>
 <script defer src="main.bundle.js"></script></head>
 <body>
+
+  <!-- </i> -->
+  <!-- </i> -->
+
+
   <div class="container">
     <div class="todo">
-      <!-- to do list title section -->
+
       <div class="title-bar">
         <h1 class="title">Today's To Do</h1>
-        <div class="refresh">
-          <i class="fa-solid fa-rotate"></i>
-        </div>
+        <div class="refresh"><i class="fa-solid fa-rotate"></i></div>
       </div>
-      <!-- to do list form section to add items -->
+
       <form action="index.html" class="todo-form">
         <div class="field-group">
-          <input type="text" class="add-item" placeholder="Add to your list..." aria-label="Enter todo activity">
-          <div class="return">
-            <i class="fa-regular fa-arrow-turn-down-left"></i>          </div>
+          <input type="text" class="add-item" id="add-new-activiy" placeholder="Add to your list..." aria-label="Enter todo activity">
+          <div class="return"><i class="fa-regular fa-arrow-turn-down-left"></i></div>
         </div>
+      </form>
+
+      <div class="todo-list">
+        <div class="todos">
+          <div class="todo">
+            <input type="text" class="text" value="complete project" readonly aria-label="todo task">
+            <div class="options">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-floppy-disk"></i>
+              <i class="fa-solid fa-trash"></i>
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
         <!-- activity display area -->
       <div class="todo-list">
       </div>
-      <input type="reset" value="Clear all completed" aria-label="button to submit form" class="submit-btn"/>
-      </form>
-  </div>
+      <input type="reset" value="Clear all completed" aria-label="button to submit form" class="remove-completed" id="remove-completed-tasks"/>
+      
+    </div>
   </div>
 </body>
 </html>
