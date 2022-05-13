@@ -1,6 +1,4 @@
 export default class AppInterface {
-  static length = 0;
-
   static populateToDoList = (tasks) => {
     // sort the array of tasks
     tasks.sort((a, b) => a.index - b.index);
@@ -93,15 +91,6 @@ export default class AppInterface {
 
   }
 
-  static incrementIndex = () => {
-    this.length += 1;
-    return this.length;
-  }
-
-  static decrementIndex = () => {
-    this.length -= 1;
-    return this.length;
-  }
 }
 
 

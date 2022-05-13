@@ -3,6 +3,7 @@ import AppInterface from './ui.js';
 import Storage from './storage.js';
 
 const store = new Storage();
+let listLength = 0;
 
 const form = document.querySelector('.todo-form');
 const inputActivity = document.querySelector('.add-item');
@@ -24,11 +25,13 @@ form.addEventListener('submit', (e) => {
   if (activity !== '') {
     inputActivity.value = '';
     // create todo activity object
+    listLength = listLength + 1;
     const task = {
       description: activity,
       completed: false,
-      index: AppInterface.incrementIndex(),
+      index: listLength,
     };
+    console.log(listLength)
     // perfome updates
     toDoTasks.push(task);
     AppInterface.addTaskToList(task);
