@@ -27,12 +27,14 @@ export default class AppInterface {
     input.classList.add('text');
     input.value = inputValue;
     input.setAttribute('readonly', 'readonly');
+    input.setAttribute('name', 'my-task');
     return input;
   }
 
   createOptions = () => {
     const edit = document.createElement('i');
     edit.classList.add('fa-solid','fa-pen-to-square');
+    this.addEditListener(edit);
     const save = document.createElement('i');
     save.classList.add('fa-solid', 'fa-floppy-disk');
     const trash = document.createElement('i');
@@ -46,6 +48,16 @@ export default class AppInterface {
     optionsEl.appendChild(trash);
     optionsEl.appendChild(ellipsis);
     return optionsEl;
+  }
+
+  addEditListener = elem => {
+    elem.addEventListener('click', (e) => {
+      const todo_task = e.target.parentElement.parentElement;
+      const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
+      inputFieldEl.removeAttribute('readonly');
+      inputFieldEl.focus();
+      return;
+    })
   }
 
 
