@@ -83,7 +83,6 @@ p.activity-desc {
 div.ellipsis,div.delete-icon {
   border: none;
   cursor:pointer;
-  outline:1px solid green;
 }
 
 /* hide the display icon */
