@@ -2,6 +2,7 @@ export default class AppInterface {
   addTaskToToDosList = (task) => {
     const toDoTaskElement = this.toDoTask();
     const checkbox = this.createCheckBox();
+    this.addCompleteListener(checkbox);
     const inputElement = this.createTextInput(task.description);
     const optionsElement = this.createOptions();
     toDoTaskElement.appendChild(checkbox);
@@ -24,7 +25,7 @@ export default class AppInterface {
 
   createTextInput = inputValue => {
     const input = document.createElement('input');
-    input.classList.add('text');
+    input.classList.add('text', 'task-color');
     input.value = inputValue;
     input.setAttribute('readonly', 'readonly');
     input.setAttribute('name', 'my-task');
@@ -76,6 +77,21 @@ export default class AppInterface {
       const todo_task = e.target.parentElement.parentElement;
       todo_task.remove();
       return;
+    });
+  };
+
+  addCompleteListener = elem => {
+    elem.addEventListener('click', (e) => {
+      console.log(e.target.parentElement);
+      const todo_task = e.target.parentElement;
+      const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
+      if(e.target.checked) {
+        inputFieldEl.classList.remove('task-color');
+        inputFieldEl.classList.add('completed');
+      }else{
+        inputFieldEl.classList.add('task-color');
+        inputFieldEl.classList.remove('completed');
+      };
     });
   };
 
