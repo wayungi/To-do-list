@@ -1,6 +1,4 @@
 *{
-  /* border:none;
-  margin:0; */
   padding:0;
   margin:0;
   font-size: 12px;
@@ -18,10 +16,16 @@
 
 .todo {
   width:60%;
+  box-shadow: 0 2px 3px rgba(0,0,0,.5);
 }
 
 .title-bar {
   justify-content: space-between;
+  padding:20px 20px;
+}
+
+.fa-rotate, .title {
+  font-size: 2em;
 }
 
 .title-bar, .form-elements{
@@ -33,7 +37,17 @@
 .add-item {
   width:100%;
   box-sizing: border-box;
-  padding:5px 10px;
+  padding:15px 10px;
+  border:none;
+}
+
+.form-elements {
+  border-top: 1px solid rgba(211,211,211, 0.5);
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+}
+
+.add-item:focus {
+  outline:none;
 }
 
 .todo-task {
@@ -41,6 +55,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  padding:10px 0 10px 10px;
 }
 
 .fa-solid {
@@ -50,7 +66,7 @@
 }
 
 .text {
-  width:78%;
+  width:75%;
   padding:5px 10px;
   box-sizing: border-box;
   border:none;
@@ -62,13 +78,13 @@
 
 .remove-completed {
   display:inline-block;
-  outline:1px solid;
   width:100%;
   box-sizing: border-box;
-  height: 30px;
+  height: 40px;
   text-align: center;
-  line-height: 30px;
+  line-height: 40px;
   text-decoration: none;
+  border:none;
 }
 
 
