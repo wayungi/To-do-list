@@ -1,5 +1,7 @@
 export default class AppInterface {
-  
+  addTaskToToDosList = task => {
+
+  }
 
 
 
