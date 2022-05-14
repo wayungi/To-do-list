@@ -1,6 +1,6 @@
 import Storage from "./storage.js";
 const store = new Storage();
-const tasksArray = store.checkLocalStorage();
+let tasksArray = store.checkLocalStorage();
 
 export default class AppInterface {
   addTaskToToDosList = (task) => {
@@ -158,8 +158,16 @@ export default class AppInterface {
     });
   };
 
-  removeAllChecked = () => {
-    //implement tomorrow
+  removeAllChecked = (toDosList) => {
+    tasksArray = tasksArray.filter(task => task.completed === false);
+    this.updateAllIndex();
+    store.updateLocalStorage(tasksArray);
+    //clear all elements in the todo list
+    toDosList.innerHTML = '';
+    //repopulate the todo list
+    tasksArray.forEach(task => this.addTaskToToDosList(task));
+    location.reload();
+    return;
   }
 
   toggleVisibility =(hideThisEl, showThisEl) => {
@@ -203,6 +211,15 @@ export default class AppInterface {
     return;
   }
 
+  updateAllIndex = () => {
+    let assignedIndex = 0;
+    tasksArray.forEach(task => {
+      assignedIndex = assignedIndex + 1;
+      task.index = assignedIndex;
+    })
+    return;
+  }
+
   getTasksArrayLength = () => {
     return tasksArray.length;
   }
@@ -210,13 +227,6 @@ export default class AppInterface {
   updateCompleted = (elementIndex, state) => {
     tasksArray[elementIndex].completed = state;
     store.updateLocalStorage(tasksArray);
-    console.log(tasksArray);
     return;
   }
-
-
-
-
 }
-
-

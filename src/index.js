@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 allCompleted.addEventListener('click', () => {
-  userInterface.removeAllChecked();
+  userInterface.removeAllChecked(toDosList);
 })
 
 refresh.addEventListener('click', () => {
-  userInterface.removeAllChecked();
+  userInterface.removeAllChecked(toDosList);
 })
 
 
