@@ -1,4 +1,5 @@
-import Storage from "./storage.js";
+import Storage from './storage.js';
+
 const store = new Storage();
 let tasksArray = store.checkLocalStorage();
 
@@ -23,23 +24,25 @@ export default class AppInterface {
     return todoTaskEl;
   }
 
-  hiddenInputElement = index => {
+  hiddenInputElement = (index) => {
     const input = document.createElement('input');
-    input.setAttribute('type','hidden');
-    input.setAttribute('name','index');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', 'index');
     input.setAttribute('value', index);
     return input;
   }
 
-  createCheckBox = state => {
+  createCheckBox = (state) => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    state ? checkbox.setAttribute('checked','checked') : '';
+    if (state) {
+      checkbox.setAttribute('checked', 'checked');
+    }
     this.addCheckBoxListener(checkbox);
     return checkbox;
   }
 
-  createTextInput = inputValue => {
+  createTextInput = (inputValue) => {
     const input = document.createElement('input');
     input.classList.add('text', 'task-color');
     input.value = inputValue;
@@ -50,17 +53,17 @@ export default class AppInterface {
 
   createOptions = () => {
     const edit = document.createElement('i');
-    edit.classList.add('fa-solid','fa-pen-to-square');
+    edit.classList.add('fa-solid', 'fa-pen-to-square');
     edit.classList.add('hidden');
-    
+
     const save = document.createElement('i');
     save.classList.add('fa-solid', 'fa-floppy-disk');
     save.classList.add('hidden');
-    
+
     const trash = document.createElement('i');
     trash.classList.add('fa-solid', 'fa-trash');
     trash.classList.add('hidden');
-    
+
     const ellipsis = document.createElement('i');
     ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
 
@@ -70,7 +73,7 @@ export default class AppInterface {
     this.addDisplayModifier(ellipsis);
 
     const optionsEl = document.createElement('div');
-    optionsEl.classList.add('options')
+    optionsEl.classList.add('options');
     optionsEl.appendChild(edit);
     optionsEl.appendChild(save);
     optionsEl.appendChild(trash);
@@ -79,107 +82,98 @@ export default class AppInterface {
   };
 
   addCheckBoxListener = (elem) => {
-    elem.addEventListener('click', e => {
-      const todo_task = e.target.parentElement;
-      const index = +todo_task.querySelector('input[name="index"]').value;
+    elem.addEventListener('click', (e) => {
+      const todoTask = e.target.parentElement;
+      const index = +todoTask.querySelector('input[name="index"]').value;
       const elementIndex = index - 1;
-      if(e.target.checked) {
+      if (e.target.checked) {
         this.updateCompleted(elementIndex, true);
-      }else{
+      } else {
         this.updateCompleted(elementIndex, false);
       }
-      return;
     });
   };
 
-
   addEditListener = (edit, save) => {
     edit.addEventListener('click', (e) => {
-      //hide edit icon & show save icon
-      this. toggleVisibility(edit, save);
-      //get the input field and make it editable with focus
-      const todo_task = e.target.parentElement.parentElement;
-      const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
+      // hide edit icon & show save icon
+      this.toggleVisibility(edit, save);
+      // get the input field and make it editable with focus
+      const todoTask = e.target.parentElement.parentElement;
+      const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
       inputFieldEl.removeAttribute('readonly');
       inputFieldEl.focus();
-      return;
     });
   };
 
   addSaveListener = (save, edit) => {
     save.addEventListener('click', (e) => {
-      //hide save icon & display edit icon
+      // hide save icon & display edit icon
       this.toggleVisibility(save, edit);
-      //get the input field and make it uneditable
-      const todo_task = e.target.parentElement.parentElement;
-      const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
+      // get the input field and make it uneditable
+      const todoTask = e.target.parentElement.parentElement;
+      const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
       inputFieldEl.setAttribute('readonly', 'readonly');
       // get the parameters for the edit
-      const hiddenInputEl = todo_task.querySelector('input[name="index"]');
+      const hiddenInputEl = todoTask.querySelector('input[name="index"]');
       this.saveTaskEdit(inputFieldEl.value, hiddenInputEl.value);
-      return;
     });
   };
 
-  addDeleteListener = elem => {
+  addDeleteListener = (elem) => {
     elem.addEventListener('click', (e) => {
-      const todo_task = e.target.parentElement.parentElement;
-      // index of element to be removed from array 
-      const index = todo_task.querySelector('input[name="index"]').value;
-      todo_task.remove();
+      const todoTask = e.target.parentElement.parentElement;
+      // index of element to be removed from array
+      const index = todoTask.querySelector('input[name="index"]').value;
+      todoTask.remove();
       this.deleteTask(index);
-      return;
     });
   };
 
-  //on clicking ellipsis, display edit and delete icons
-  addDisplayModifier = elem => {
+  // on clicking ellipsis, display edit and delete icons
+  addDisplayModifier = (elem) => {
     elem.addEventListener('click', (e) => {
       e.target.classList.add('hidden');
       const parent = e.target.parentElement;
       // display edit & delete buttons
       parent.querySelector('.fa-pen-to-square').classList.remove('hidden');
       parent.querySelector('.fa-trash').classList.remove('hidden');
-      return;
     });
   };
 
-  addCompleteListener = elem => {
+  addCompleteListener = (elem) => {
     elem.addEventListener('click', (e) => {
-      const todo_task = e.target.parentElement;
-      const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
-      if(e.target.checked) {
+      const todoTask = e.target.parentElement;
+      const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
+      if (e.target.checked) {
         inputFieldEl.classList.remove('task-color');
         inputFieldEl.classList.add('completed');
-      }else{
+      } else {
         inputFieldEl.classList.add('task-color');
         inputFieldEl.classList.remove('completed');
-      };
+      }
     });
   };
 
   removeAllChecked = (toDosList) => {
-    tasksArray = tasksArray.filter(task => task.completed === false);
+    tasksArray = tasksArray.filter((task) => task.completed === false);
     this.updateAllIndex();
     store.updateLocalStorage(tasksArray);
-    //clear all elements in the todo list
+    // clear all elements in the todo list
     toDosList.innerHTML = '';
-    //repopulate the todo list
-    tasksArray.forEach(task => this.addTaskToToDosList(task));
+    // repopulate the todo list
+    tasksArray.forEach((task) => this.addTaskToToDosList(task));
     location.reload();
-    return;
   }
 
   toggleVisibility =(hideThisEl, showThisEl) => {
     hideThisEl.classList.add('hidden');
     showThisEl.classList.remove('hidden');
-    return;
   }
 
-  updatetasksArray = task => {
+  updatetasksArray = (task) => {
     tasksArray.push(task);
     store.updateLocalStorage(tasksArray);
-    return;
   }
 
   checkStorage = () => {
@@ -188,45 +182,38 @@ export default class AppInterface {
   }
 
   saveTaskEdit(editedTask, taskIndex) {
-    const index = +taskIndex
+    const index = +taskIndex;
     // update the task description
-    tasksArray[index-1].description = editedTask;
+    tasksArray[index - 1].description = editedTask;
     store.updateLocalStorage(tasksArray);
-    return;
   }
 
   deleteTask = (index) => {
     const elementIndex = +index - 1;
     tasksArray.splice(elementIndex, 1);
     this.updateIndex(elementIndex);
-    return;
   }
 
   // reduce the index of all elements after the element that was removed
-  updateIndex = startIndex => {
-    for(let i=startIndex; i < tasksArray.length; i=i+1){
-      tasksArray[i].index = tasksArray[i].index -1;
+  updateIndex = (startIndex) => {
+    for (let i = startIndex; i < tasksArray.length; i += 1) {
+      tasksArray[i].index -= 1;
     }
     store.updateLocalStorage(tasksArray);
-    return;
   }
 
   updateAllIndex = () => {
     let assignedIndex = 0;
-    tasksArray.forEach(task => {
-      assignedIndex = assignedIndex + 1;
+    tasksArray.forEach((task) => {
+      assignedIndex += 1;
       task.index = assignedIndex;
-    })
-    return;
+    });
   }
 
-  getTasksArrayLength = () => {
-    return tasksArray.length;
-  }
+  getTasksArrayLength = () => tasksArray.length
 
   updateCompleted = (elementIndex, state) => {
     tasksArray[elementIndex].completed = state;
     store.updateLocalStorage(tasksArray);
-    return;
   }
 }
