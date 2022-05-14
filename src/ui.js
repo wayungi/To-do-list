@@ -160,7 +160,12 @@ export default class AppInterface {
   }
 
   saveTaskEdit(editedTask, taskIndex) {
-
+    const index = +taskIndex
+    // update the task description
+    tasksArray[index-1].description = editedTask;
+    store.updateLocalStorage(tasksArray);
+    console.log(tasksArray);
+    return;
   }
 
 
