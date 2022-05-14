@@ -1,10 +1,12 @@
 export default class AppInterface {
   addTaskToToDosList = (task) => {
     const toDoTaskElement = this.toDoTask();
+    const hiddenInputElement = this.hiddenInputElement(task.index);
     const checkbox = this.createCheckBox();
     this.addCompleteListener(checkbox);
     const inputElement = this.createTextInput(task.description);
     const optionsElement = this.createOptions();
+    toDoTaskElement.appendChild(hiddenInputElement);
     toDoTaskElement.appendChild(checkbox);
     toDoTaskElement.appendChild(inputElement);
     toDoTaskElement.appendChild(optionsElement);
@@ -15,6 +17,14 @@ export default class AppInterface {
     const todoTaskEl = document.createElement('div');
     todoTaskEl.classList.add('todo-task');
     return todoTaskEl;
+  }
+
+  hiddenInputElement = index => {
+    const input = document.createElement('input');
+    input.setAttribute('type','hidden');
+    input.setAttribute('name','index');
+    input.setAttribute('value', index);
+    return input;
   }
 
   createCheckBox = () => {

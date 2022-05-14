@@ -2,7 +2,9 @@ import './style.css';
 import AppInterface from './ui.js';
 import Storage from './storage.js';
 import Task from './task.js';
-import { tasksArray } from './global.js';
+import globalContext from './global.js';
+
+
 
 const form = document.querySelector(".todo-form");
 const input = document.querySelector('.add-item');
@@ -11,7 +13,7 @@ const allCompleted = document.querySelector('#remove-completed-tasks');
 const refresh = document.querySelector('.fa-rotate');
 const store = new Storage();
 const userInterface = new AppInterface();
-let tasksArray = [];
+let tasksArray = globalContext.tasksArray
 
 //on form submit
 form.addEventListener('submit', (e) => {
@@ -24,6 +26,7 @@ form.addEventListener('submit', (e) => {
     input.value = '';
     //  update tasksArray & localStorage
     tasksArray.push(task);
+    console.log(tasksArray)
     store.updateLocalStorage(tasksArray);
   }
 });

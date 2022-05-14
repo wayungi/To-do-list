@@ -1,1 +1,5 @@
-export let tasksArray = [];
+const globalContext = {
+  tasksArray: [],
+};
+
+export default globalContext;
