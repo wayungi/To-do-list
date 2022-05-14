@@ -6,7 +6,7 @@ export default class AppInterface {
   addTaskToToDosList = (task) => {
     const toDoTaskElement = this.toDoTask();
     const hiddenInputElement = this.hiddenInputElement(task.index);
-    const checkbox = this.createCheckBox();
+    const checkbox = this.createCheckBox(task.completed);
     this.addCompleteListener(checkbox);
     const inputElement = this.createTextInput(task.description);
     const optionsElement = this.createOptions();
@@ -31,9 +31,11 @@ export default class AppInterface {
     return input;
   }
 
-  createCheckBox = () => {
+  createCheckBox = state => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    state ? checkbox.setAttribute('checked','checked') : '';
+    this.addCheckBoxListener(checkbox);
     return checkbox;
   }
 
@@ -75,6 +77,21 @@ export default class AppInterface {
     optionsEl.appendChild(ellipsis);
     return optionsEl;
   };
+
+  addCheckBoxListener = (elem) => {
+    elem.addEventListener('click', e => {
+      const todo_task = e.target.parentElement;
+      const index = +todo_task.querySelector('input[name="index"]').value;
+      const elementIndex = index - 1;
+      if(e.target.checked) {
+        this.updateCompleted(elementIndex, true);
+      }else{
+        this.updateCompleted(elementIndex, false);
+      }
+      return;
+    });
+  };
+
 
   addEditListener = (edit, save) => {
     edit.addEventListener('click', (e) => {
@@ -188,6 +205,13 @@ export default class AppInterface {
 
   getTasksArrayLength = () => {
     return tasksArray.length;
+  }
+
+  updateCompleted = (elementIndex, state) => {
+    tasksArray[elementIndex].completed = state;
+    store.updateLocalStorage(tasksArray);
+    console.log(tasksArray);
+    return;
   }
 
 
