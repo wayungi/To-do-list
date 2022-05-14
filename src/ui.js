@@ -107,7 +107,10 @@ export default class AppInterface {
   addDeleteListener = elem => {
     elem.addEventListener('click', (e) => {
       const todo_task = e.target.parentElement.parentElement;
+      // index of element to be removed from array 
+      const index = todo_task.querySelector('input[name="index"]').value;
       todo_task.remove();
+      this.deleteTask(index);
       return;
     });
   };
@@ -164,8 +167,27 @@ export default class AppInterface {
     // update the task description
     tasksArray[index-1].description = editedTask;
     store.updateLocalStorage(tasksArray);
-    console.log(tasksArray);
     return;
+  }
+
+  deleteTask = (index) => {
+    const elementIndex = +index - 1;
+    tasksArray.splice(elementIndex, 1);
+    this.updateIndex(elementIndex);
+    return;
+  }
+
+  // reduce the index of all elements after the element that was removed
+  updateIndex = startIndex => {
+    for(let i=startIndex; i < tasksArray.length; i=i+1){
+      tasksArray[i].index = tasksArray[i].index -1;
+    }
+    store.updateLocalStorage(tasksArray);
+    return;
+  }
+
+  getTasksArrayLength = () => {
+    return tasksArray.length;
   }
 
 
