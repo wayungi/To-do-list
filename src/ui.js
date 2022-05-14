@@ -155,15 +155,39 @@ export default class AppInterface {
     });
   };
 
-  removeAllChecked = (toDosList) => {
+  removeAllChecked = () => {
+    const deleteTracker = [...tasksArray];
     tasksArray = tasksArray.filter((task) => task.completed === false);
     this.updateAllIndex();
     store.updateLocalStorage(tasksArray);
-    // clear all elements in the todo list
-    toDosList.innerHTML = '';
-    // repopulate the todo list
-    tasksArray.forEach((task) => this.addTaskToToDosList(task));
-    location.reload();
+
+    // addDeleteListener = (elem) => {
+    //   elem.addEventListener('click', (e) => {
+    //     const todoTask = e.target.parentElement.parentElement;
+    //     // index of element to be removed from array
+    //     const index = todoTask.querySelector('input[name="index"]').value;
+    //     todoTask.remove();
+    //     this.deleteTask(index);
+    //   });
+    // };
+
+    const deleteTarget = deleteTracker.filter(task => task.completed === true);
+    console.log(deleteTarget);
+    deleteTarget.forEach(task => {
+      const index = task.index;
+      let victimTask = document.querySelector(`input[name="${index}"]`);
+      console.log(victimTask)
+      let parent = victimTask.parentElement;
+      parentElement.remove();
+    });
+
+
+  
+
+    
+
+
+    return;
   }
 
   toggleVisibility =(hideThisEl, showThisEl) => {

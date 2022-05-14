@@ -1,6 +1,5 @@
 import './style.css';
 import AppInterface from './ui.js';
-import Task from './task.js';
 
 const form = document.querySelector('.todo-form');
 const input = document.querySelector('.add-item');
@@ -15,7 +14,7 @@ form.addEventListener('submit', (e) => {
   const inputValue = input.value;
   if (inputValue) {
     const length = userInterface.getTasksArrayLength() + 1;
-    const task = new Task(inputValue, false, length);
+    const task = { description: inputValue, completed: false, index: length };
     const todoTask = userInterface.addTaskToToDosList(task);
     toDosList.appendChild(todoTask);
     input.value = '';
@@ -34,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 allCompleted.addEventListener('click', () => {
-  userInterface.removeAllChecked(toDosList);
+  userInterface.removeAllChecked();
 });
 
 refresh.addEventListener('click', () => {
-  userInterface.removeAllChecked(toDosList);
+  userInterface.removeAllChecked();
 });
