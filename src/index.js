@@ -2,6 +2,7 @@ import './style.css';
 import AppInterface from './ui.js';
 import Storage from './storage.js';
 import Task from './task.js';
+import { tasksArray } from './global.js';
 
 const form = document.querySelector(".todo-form");
 const input = document.querySelector('.add-item');
