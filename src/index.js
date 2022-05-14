@@ -10,7 +10,6 @@ const allCompleted = document.querySelector('#remove-completed-tasks');
 const refresh = document.querySelector('.fa-rotate');
 const store = new Storage();
 const userInterface = new AppInterface();
-let listLength = 0;
 let tasksArray = [];
 
 //on form submit
@@ -18,21 +17,23 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const inputValue = input.value;
   if(inputValue){
-    listLength = listLength + 1;
-    const task = new Task(inputValue, false, listLength);
+    const task = new Task(inputValue, false, tasksArray.length+1);
     const todo_task = userInterface.addTaskToToDosList(task);
     toDosList.appendChild(todo_task);
     input.value = '';
+    //  update tasksArray & localStorage
+    tasksArray.push(task);
+    store.updateLocalStorage(tasksArray);
   }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  tasksArray = store.checkLocalStorage();
-  if(tasksArray.length < 1) return;
-  tasksArray.forEach(task => {
-    const todo_task = userInterface.addTaskToToDosList(task);
-    toDosList.appendChild(todo_task);
-  })
+  // tasksArray = store.checkLocalStorage();
+  // if(tasksArray.length < 1) return;
+  // tasksArray.forEach(task => {
+  //   const todo_task = userInterface.addTaskToToDosList(task);
+  //   toDosList.appendChild(todo_task);
+  // });
 });
 
 allCompleted.addEventListener('click', () => {
