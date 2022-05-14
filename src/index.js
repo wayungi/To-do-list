@@ -28,12 +28,12 @@ form.addEventListener('submit', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // tasksArray = store.checkLocalStorage();
-  // if(tasksArray.length < 1) return;
-  // tasksArray.forEach(task => {
-  //   const todo_task = userInterface.addTaskToToDosList(task);
-  //   toDosList.appendChild(todo_task);
-  // });
+  tasksArray = store.checkLocalStorage();
+  if(tasksArray.length < 1) return;
+  tasksArray.forEach(task => {
+    const todo_task = userInterface.addTaskToToDosList(task);
+    toDosList.appendChild(todo_task);
+  });
 });
 
 allCompleted.addEventListener('click', () => {
