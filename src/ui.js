@@ -35,15 +35,24 @@ export default class AppInterface {
   createOptions = () => {
     const edit = document.createElement('i');
     edit.classList.add('fa-solid','fa-pen-to-square');
-    this.addEditListener(edit);
+    edit.classList.add('hidden');
+    
     const save = document.createElement('i');
     save.classList.add('fa-solid', 'fa-floppy-disk');
-    this.addSaveListener(save);
+    save.classList.add('hidden');
+    
     const trash = document.createElement('i');
     trash.classList.add('fa-solid', 'fa-trash');
-    this.addDeleteListener(trash);
+    trash.classList.add('hidden');
+    
     const ellipsis = document.createElement('i');
     ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
+
+    this.addEditListener(edit, save);
+    this.addSaveListener(save, edit);
+    this.addDeleteListener(trash);
+    this.addDisplayModifier(ellipsis);
+
     const optionsEl = document.createElement('div');
     optionsEl.classList.add('options')
     optionsEl.appendChild(edit);
@@ -53,8 +62,11 @@ export default class AppInterface {
     return optionsEl;
   };
 
-  addEditListener = elem => {
-    elem.addEventListener('click', (e) => {
+  addEditListener = (edit, save) => {
+    edit.addEventListener('click', (e) => {
+      //hide edit icon & show save icon
+      this. toggleVisibility(edit, save);
+      //get the input field and make it editable with focus
       const todo_task = e.target.parentElement.parentElement;
       const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
       inputFieldEl.removeAttribute('readonly');
@@ -63,8 +75,11 @@ export default class AppInterface {
     });
   };
 
-  addSaveListener = elem => {
-    elem.addEventListener('click', (e) => {
+  addSaveListener = (save, edit) => {
+    save.addEventListener('click', (e) => {
+      //hide save icon & display edit icon
+      this.toggleVisibility(save, edit);
+      //get the input field and make it uneditable
       const todo_task = e.target.parentElement.parentElement;
       const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
       inputFieldEl.setAttribute('readonly', 'readonly');
@@ -80,9 +95,20 @@ export default class AppInterface {
     });
   };
 
+  //on clicking ellipsis, display edit and delete icons
+  addDisplayModifier = elem => {
+    elem.addEventListener('click', (e) => {
+      e.target.classList.add('hidden');
+      const parent = e.target.parentElement;
+      // display edit & delete buttons
+      parent.querySelector('.fa-pen-to-square').classList.remove('hidden');
+      parent.querySelector('.fa-trash').classList.remove('hidden');
+      return;
+    });
+  };
+
   addCompleteListener = elem => {
     elem.addEventListener('click', (e) => {
-      console.log(e.target.parentElement);
       const todo_task = e.target.parentElement;
       const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
       if(e.target.checked) {
@@ -95,106 +121,19 @@ export default class AppInterface {
     });
   };
 
-
-
-
-
-
-
-
-  static populateToDoList = (tasks) => {
-    tasks.sort((a, b) => a.index - b.index);
-    const outerDiv = document.querySelector('.todo-list');
-    tasks.forEach((task) => {
-      const taskContainer = this.createTaskContainer();
-
-      const ellipsis = this.createEllipsisIcon();
-      ellipsis.addEventListener('click', (e) => {
-        ellipsis.classList.add('hide');
-        console.log(e.target.parentElement);
-        const deleteBtn = e.target.parentElement.querySelector('.delete-icon');
-        deleteBtn.classList.remove('hide');
-      });
-
-      const trashCan = this.createTrashCanIcon();
-      trashCan.addEventListener('click', (e) => {
-        console.log(e.target.parentElement.parentElement);
-        console.log('delete activity');
-      });
-
-      const par = this.createToDoTask(task.description);
-      const checkbox = this.createCheckBox();
-      const hiddenField =  this.createHiddenInputField(task.index)
-      taskContainer.append(checkbox, par, ellipsis, trashCan, hiddenField);
-      outerDiv.appendChild(taskContainer);
-    });
-  };
-
-  static createEllipsisIcon = () => {
-    const ellipsis = document.createElement('div');
-    ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
-    ellipsis.classList.add('ellipsis');
-    return ellipsis;
-  };
-
-  static createTrashCanIcon = () => {
-    const div = document.createElement('div');
-    div.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    div.classList.add('delete-icon', 'hide');
-    return div;
-  };
-
-  static createToDoTask = (description) => {
-    const par = document.createElement('p');
-    par.textContent = description;
-    par.classList.add('activity-desc');
-    return par;
+  removeAllChecked = () => {
+    //implement tomorrow
   }
 
-  
-
-  static createHiddenInputField = (index) => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'hidden');
-    input.value = index;
-    return input;
-  }
-
-  static createTaskContainer = () => {
-    const taskContainer = document.createElement('div');
-    taskContainer.classList.add('main-activity');
-    return taskContainer
-  }
-  // Add a todo task to the interface
-  static addTaskToList = (task) => {
-    const outerDiv = document.querySelector('.todo-list');
-
-    const activityDiv = document.createElement('div');
-    // create ellipsis
-    const ellipsis = document.createElement('div');
-    ellipsis.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
-    ellipsis.classList.add('ellipsis');
-    // create delete icon
-    const trashCan = document.createElement('div');
-    trashCan.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    trashCan.classList.add('delete-icon', 'hide');
-    // create the checkbox & appenf to li
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    // create activity description
-    const par = document.createElement('p');
-    par.textContent = task.description;
-    par.classList.add('activity-desc');
-
-    activityDiv.appendChild(checkbox);
-    activityDiv.appendChild(par);
-    activityDiv.appendChild(ellipsis);
-    activityDiv.appendChild(trashCan);
-    outerDiv.appendChild(activityDiv);
-
-    this.attachListener(ellipsis,'click', this.func)
+  toggleVisibility =(hideThisEl, showThisEl) => {
+    hideThisEl.classList.add('hidden');
+    showThisEl.classList.remove('hidden');
+    return;
 
   }
+
+
+
 
 }
 

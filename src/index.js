@@ -6,9 +6,12 @@ import Task from './task.js';
 const form = document.querySelector(".todo-form");
 const input = document.querySelector('.add-item');
 const toDosList = document.querySelector('.todos');
+const allCompleted = document.querySelector('#remove-completed-tasks');
+const refresh = document.querySelector('.fa-rotate');
 const store = new Storage();
 const userInterface = new AppInterface();
 let listLength = 0;
+let tasksArray = [];
 
 //on form submit
 form.addEventListener('submit', (e) => {
@@ -21,39 +24,18 @@ form.addEventListener('submit', (e) => {
     toDosList.appendChild(todo_task);
     input.value = '';
   }
-  
+});
+
+document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+allCompleted.addEventListener('click', () => {
+  userInterface.removeAllChecked();
+})
+
+refresh.addEventListener('click', () => {
+  userInterface.removeAllChecked();
+})
 
 
-
-// const toDoTasks = store.checkStorage();
-
-// // populate the todo list on page load
-// document.addEventListener('DOMContentLoaded', () => {
-//   const taskArray = store.checkStorage();
-//   if (taskArray.length > 0) {
-//     AppInterface.populateToDoList(taskArray);
-//   }
-// });
-
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const activity = inputActivity.value;
-
-//   if (activity !== '') {
-//     inputActivity.value = '';
-//     // create todo activity object
-//     listLength = listLength + 1;
-//     const task = {
-//       description: activity,
-//       completed: false,
-//       index: listLength,
-//     };
-//     // perfome updates
-//     toDoTasks.push(task);
-//     AppInterface.addTaskToList(task);
-//     store.updateStorage(toDoTasks);
-//   }
-// });

@@ -28,6 +28,10 @@
   font-size: 2em;
 }
 
+.fa-rotate:active{
+  color:rgba(0, 0, 0, 0.5);
+}
+
 .title-bar, .form-elements{
   display:flex;
   flex-direction: row;
@@ -66,7 +70,7 @@
 }
 
 .text {
-  width:75%;
+  width:85%;
   padding:5px 10px;
   box-sizing: border-box;
   border:none;
@@ -84,7 +88,7 @@
   color:black;
 }
 
-.remove-completed {
+a.remove-completed {
   display:inline-block;
   width:100%;
   box-sizing: border-box;
@@ -97,8 +101,18 @@
   color: rgba(115, 115, 115, 1)
 }
 
+a.remove-completed:active {
+  background-color: rgba(211,211,211, 0.8);
+  color:#fff;
+}
+
 input.completed {
   color:rgba(211,211,211, 0.8);
 }
+
+.hidden {
+  display:none;
+}
+
 
 
