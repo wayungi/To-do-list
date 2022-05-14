@@ -1,3 +1,7 @@
+import Storage from "./storage.js";
+const store = new Storage();
+const tasksArray = store.checkLocalStorage();
+
 export default class AppInterface {
   addTaskToToDosList = (task) => {
     const toDoTaskElement = this.toDoTask();
@@ -93,6 +97,9 @@ export default class AppInterface {
       const todo_task = e.target.parentElement.parentElement;
       const inputFieldEl = todo_task.querySelector('input[name="my-task"]');
       inputFieldEl.setAttribute('readonly', 'readonly');
+      // get the parameters for the edit
+      const hiddenInputEl = todo_task.querySelector('input[name="index"]');
+      this.saveTaskEdit(inputFieldEl.value, hiddenInputEl.value);
       return;
     });
   };
@@ -139,6 +146,20 @@ export default class AppInterface {
     hideThisEl.classList.add('hidden');
     showThisEl.classList.remove('hidden');
     return;
+  }
+
+  updatetasksArray = task => {
+    tasksArray.push(task);
+    store.updateLocalStorage(tasksArray);
+    return;
+  }
+
+  checkStorage = () => {
+    const tasksArray = store.checkLocalStorage();
+    return tasksArray;
+  }
+
+  saveTaskEdit(editedTask, taskIndex) {
 
   }
 
