@@ -1,11 +1,10 @@
 export default class Storage {
-  checkStorage = () => {
-    const todoList = localStorage.getItem('todoList');
-    return todoList ? JSON.parse(todoList) : [];
+  checkLocalStorage = () => {
+    const tasksArray = localStorage.getItem('tasksArray');
+    return tasksArray ? JSON.parse(tasksArray) : [];
   }
 
-  // Add a list to localstorage
-  updateStorage = (list) => {
-    localStorage.setItem('todoList', JSON.stringify(list));
+  updateLocalStorage = (tasksArray) => {
+    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
   }
 }
