@@ -23,7 +23,7 @@ A to to list app with webpack and es6 syntax
 
 ## Live Demo
 
-[Live Demo Link](https://wayungi.github.io/To-do-list/)
+[Live Demo Link](https://wayungi.github.io/To-do-list/dist/)
 
 ## Author
 
