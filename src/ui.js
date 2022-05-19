@@ -17,10 +17,7 @@ export default class AppInterface {
     toDoTaskElement.appendChild(checkbox);
     toDoTaskElement.appendChild(inputElement);
     toDoTaskElement.appendChild(optionsElement);
-
-    //const todoTask = userInterface.addTaskToToDosList(task);
     toDosList.appendChild(toDoTaskElement);
-
     return;
   }
 
@@ -203,6 +200,7 @@ export default class AppInterface {
     const elementIndex = +index - 1;
     tasksArray.splice(elementIndex, 1);
     this.updateIndex(elementIndex);
+    return;
   }
 
   // reduce the index of all elements after the element that was removed
