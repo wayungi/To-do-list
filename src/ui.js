@@ -2,6 +2,8 @@ import Storage from './storage.js';
 
 const store = new Storage();
 let tasksArray = store.checkLocalStorage();
+const toDosList = document.querySelector('.todos');
+
 
 export default class AppInterface {
   addTaskToToDosList = (task) => {
@@ -15,7 +17,11 @@ export default class AppInterface {
     toDoTaskElement.appendChild(checkbox);
     toDoTaskElement.appendChild(inputElement);
     toDoTaskElement.appendChild(optionsElement);
-    return toDoTaskElement;
+
+    //const todoTask = userInterface.addTaskToToDosList(task);
+    toDosList.appendChild(toDoTaskElement);
+
+    return;
   }
 
   toDoTask = () => {
