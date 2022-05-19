@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/wayungi/To-do-list#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
