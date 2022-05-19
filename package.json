@@ -4,7 +4,7 @@
   "description": "A to-do list app with webpack & es6",
   "private": true,
   "scripts": {
-    "test": "mocha",
+    "test": "jest --coverage",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack"
