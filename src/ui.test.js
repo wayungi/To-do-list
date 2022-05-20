@@ -1,4 +1,5 @@
 import AppInterface from "./ui.js";
+jest.spyOn(window,'localStorage').mockImplementation( () => {});
 
 //add task to the todo list
 describe('Add tasks to the todo list', () => {
@@ -20,10 +21,12 @@ describe('Add tasks to the todo list', () => {
                     index: 3
    };
 
-   
+   AppInterface.addTaskToToDosList(task1);
+   AppInterface.addTaskToToDosList(task1);
+   AppInterface.addTaskToToDosList(task1);
 
-
-
+   const list = document.querySelectorAll('.todo-task');
+   expect(list).toHaveLength(3);
   });
 });
 
