@@ -1,5 +1,7 @@
 import AppInterface from "./ui.js";
-jest.spyOn(window,'localStorage').mockImplementation( () => {});
+
+document.body.innerHTML = `<div class="todos">`+`</div>`;
+
 
 //add task to the todo list
 describe('Add tasks to the todo list', () => {

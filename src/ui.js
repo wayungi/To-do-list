@@ -6,7 +6,8 @@ const toDosList = document.querySelector('.todos');
 
 
 export default class AppInterface {
-  addTaskToToDosList = (task) => {
+  
+  static addTaskToToDosList = (task) => {
     const toDoTaskElement = this.toDoTask();
     const hiddenInputElement = this.hiddenInputElement(task.index);
     const checkbox = this.createCheckBox(task.completed);
@@ -21,13 +22,15 @@ export default class AppInterface {
     return;
   }
 
-  toDoTask = () => {
-    const todoTaskEl = document.createElement('div');
-    todoTaskEl.classList.add('todo-task');
-    return todoTaskEl;
+  static toDoTask = () => {
+    // const todoTaskEl = document.createElement('div');
+    // todoTaskEl.classList.add('todo-task');
+    // return todoTaskEl;
+
+    return `<div class="todo-task">`+`</div>`;
   }
 
-  hiddenInputElement = (index) => {
+  static hiddenInputElement = (index) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'hidden');
     input.setAttribute('name', 'index');
@@ -35,7 +38,7 @@ export default class AppInterface {
     return input;
   }
 
-  createCheckBox = (state) => {
+  static createCheckBox = (state) => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     if (state) {
@@ -45,7 +48,7 @@ export default class AppInterface {
     return checkbox;
   }
 
-  createTextInput = (inputValue) => {
+  static createTextInput = (inputValue) => {
     const input = document.createElement('input');
     input.classList.add('text', 'task-color');
     input.value = inputValue;
@@ -54,7 +57,7 @@ export default class AppInterface {
     return input;
   }
 
-  createOptions = () => {
+  static createOptions = () => {
     const edit = document.createElement('i');
     edit.classList.add('fa-solid', 'fa-pen-to-square');
     edit.classList.add('hidden');
@@ -84,7 +87,7 @@ export default class AppInterface {
     return optionsEl;
   };
 
-  addCheckBoxListener = (elem) => {
+  static addCheckBoxListener = (elem) => {
     elem.addEventListener('click', (e) => {
       const todoTask = e.target.parentElement;
       const index = +todoTask.querySelector('input[name="index"]').value;
@@ -97,7 +100,7 @@ export default class AppInterface {
     });
   };
 
-  addEditListener = (edit, save) => {
+  static addEditListener = (edit, save) => {
     edit.addEventListener('click', (e) => {
       // hide edit icon & show save icon
       this.toggleVisibility(edit, save);
@@ -109,7 +112,7 @@ export default class AppInterface {
     });
   };
 
-  addSaveListener = (save, edit) => {
+  static addSaveListener = (save, edit) => {
     save.addEventListener('click', (e) => {
       // hide save icon & display edit icon
       this.toggleVisibility(save, edit);
@@ -123,7 +126,7 @@ export default class AppInterface {
     });
   };
 
-  addDeleteListener = (elem) => {
+  static addDeleteListener = (elem) => {
     elem.addEventListener('click', (e) => {
       const todoTask = e.target.parentElement.parentElement;
       // index of element to be removed from array
@@ -134,7 +137,7 @@ export default class AppInterface {
   };
 
   // on clicking ellipsis, display edit and delete icons
-  addDisplayModifier = (elem) => {
+  static addDisplayModifier = (elem) => {
     elem.addEventListener('click', (e) => {
       e.target.classList.add('hidden');
       const parent = e.target.parentElement;
@@ -144,7 +147,7 @@ export default class AppInterface {
     });
   };
 
-  addCompleteListener = (elem) => {
+  static addCompleteListener = (elem) => {
     elem.addEventListener('click', (e) => {
       const todoTask = e.target.parentElement;
       const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
@@ -158,7 +161,7 @@ export default class AppInterface {
     });
   };
 
-  removeAllChecked = () => {
+  static removeAllChecked = () => {
     const deleteTracker = [...tasksArray];
     tasksArray = tasksArray.filter((task) => task.completed === false);
     this.updateAllIndex();
@@ -173,22 +176,22 @@ export default class AppInterface {
     });
   }
 
-  toggleVisibility =(hideThisEl, showThisEl) => {
+  static toggleVisibility =(hideThisEl, showThisEl) => {
     hideThisEl.classList.add('hidden');
     showThisEl.classList.remove('hidden');
   }
 
-  updatetasksArray = (task) => {
+  static updatetasksArray = (task) => {
     tasksArray.push(task);
     store.updateLocalStorage(tasksArray);
   }
 
-  checkStorage = () => {
+  static checkStorage = () => {
     const tasksArray = store.checkLocalStorage();
     return tasksArray;
   }
 
-  saveTaskEdit = (editedTask, taskIndex) => {
+  static saveTaskEdit = (editedTask, taskIndex) => {
     const index = +taskIndex;
     const elementIndex = index - 1;
     // update the task description
@@ -196,7 +199,7 @@ export default class AppInterface {
     store.updateLocalStorage(tasksArray);
   }
 
-  deleteTask = (index) => {
+  static deleteTask = (index) => {
     const elementIndex = +index - 1;
     tasksArray.splice(elementIndex, 1);
     this.updateIndex(elementIndex);
@@ -204,14 +207,14 @@ export default class AppInterface {
   }
 
   // reduce the index of all elements after the element that was removed
-  updateIndex = (startIndex) => {
+  static updateIndex = (startIndex) => {
     for (let i = startIndex; i < tasksArray.length; i += 1) {
       tasksArray[i].index -= 1;
     }
     store.updateLocalStorage(tasksArray);
   }
 
-  updateAllIndex = () => {
+  static updateAllIndex = () => {
     let assignedIndex = 0;
     tasksArray.forEach((task) => {
       assignedIndex += 1;
@@ -219,9 +222,9 @@ export default class AppInterface {
     });
   }
 
-  getTasksArrayLength = () => tasksArray.length
+  static getTasksArrayLength = () => tasksArray.length
 
-  updateCompleted = (elementIndex, state) => {
+  static updateCompleted = (elementIndex, state) => {
     tasksArray[elementIndex].completed = state;
     store.updateLocalStorage(tasksArray);
   }
