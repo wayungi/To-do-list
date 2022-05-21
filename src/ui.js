@@ -224,20 +224,23 @@ const addCompleteListener = (elem) => {
   return;
 };
 
-// const removeAllChecked = () => {
-//   const deleteTracker = [...tasksArray];
-//   tasksArray = tasksArray.filter((task) => task.completed === false);
-//   this.updateAllIndex();
-//   store.updateLocalStorage(tasksArray);
-//   // remove deleted elements from interface
-//   const deleteTarget = deleteTracker.filter((task) => task.completed === true);
-//   deleteTarget.forEach((task) => {
-//     const { index } = task;
-//     const victimTask = document.querySelector(`input[value="${index}"]`);
-//     const { parentElement } = victimTask;
-//     parentElement.remove();
-//   });
-// }
+const removeAllChecked = () => {
+  //make a copy of the tasks array
+  const deleteTracker = [...tasks];
+  tasks = tasksArray.filter((task) => task.completed === false);
+  //  update the indexes of all elements in tasks that are not completed
+  updateAllIndex();
+  //  update localStorage with incomplete tasks tasks 
+  updateLocalStorage(tasks);
+  // remove deleted elements from todo app interface
+  const deleteTarget = deleteTracker.filter((task) => task.completed === true);
+  deleteTarget.forEach((task) => {
+    const { index } = task;
+    const victimTask = document.querySelector(`input[value="${index}"]`);
+    const { parentElement } = victimTask;
+    parentElement.remove();
+  });
+}
 
 const toggleVisibility =(hideThisEl, showThisEl) => {
   hideThisEl.classList.add('hidden');
@@ -281,13 +284,14 @@ const updateIndex = (startIndex) => {
   return;
 }
 
-// const updateAllIndex = () => {
-//   let assignedIndex = 0;
-//   tasksArray.forEach((task) => {
-//     assignedIndex += 1;
-//     task.index = assignedIndex;
-//   });
-// }
+const updateAllIndex = () => {
+  let assignedIndex = 0;
+  tasks.forEach((task) => {
+    assignedIndex += 1;
+    task.index = assignedIndex;
+  });
+  return;
+}
 
 // Toggle the completed status of the task (true/false)
 const updateCompleted = (elementIndex, state) => {
@@ -315,10 +319,10 @@ module.exports = {
   // addDeleteListener, 
   // addDisplayModifier, 
   // addCompleteListener, 
-  // removeAllChecked,
+  removeAllChecked,
   // toggleVisibility,
-    getTasks,
-    populateTasks,
+  getTasks,
+  populateTasks,
   // saveTaskEdit, 
   // deleteTask
 };

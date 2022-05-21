@@ -8,7 +8,8 @@ import { arrayLength,
          createTextInput,
          createOptions, 
          updateLocalStorage, 
-         populateTasks, removeAllChecked } from './ui';
+         populateTasks, 
+         removeAllChecked } from './ui';
 
 const form = document.querySelector('.todo-form');
 const input = document.querySelector('.add-item');
