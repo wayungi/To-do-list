@@ -27,7 +27,7 @@ form.addEventListener('submit', (e) => {
     const toDoTaskElement =  toDoTask();
     const hiddenInputEle = hiddenInputElement(activity.index);
     const checkbox = createCheckBox();
-    const inputElement = createTextInput(activity.desecription);
+    const inputElement = createTextInput(activity.description);
     const optionsElement = createOptions();
     // create object conatining dom elements for the doto activity
     const elemObj = {
@@ -41,7 +41,7 @@ form.addEventListener('submit', (e) => {
     addTaskToToDosList(elemObj);
     const updatedArray = updateTasks(activity);
     updateLocalStorage(updatedArray);
-  }
+  };
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const tasks = populateTasks();
   if (tasks.length < 1) return;
   tasks.forEach((task) => {
-
     const activity = task
     const toDoTaskElement =  toDoTask();
     const hiddenInputEle = hiddenInputElement(activity.index);

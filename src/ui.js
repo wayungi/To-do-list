@@ -1,14 +1,11 @@
-let tasks = [
-  { description: "sleep", completed: false, index: 1 },
-  { description: "wakeup", completed: false, index: 2 }
-];
+let tasks = [];
 
 const toDosList = document.querySelector('.todos');
 
 const arrayLength = () => tasks.length;
 
 const addTaskToToDosList = (elemObj) => {
-  console.log(elemObj);
+  //console.log(elemObj);
   const { toDoTaskElement, hiddenInputEle, checkbox,inputElement, optionsElement, tasks,toDosList } = elemObj;
   // const toDoTaskElement = toDoTask();
   // const hiddenInputElement = hiddenInputElement(task.index);
@@ -22,6 +19,8 @@ const addTaskToToDosList = (elemObj) => {
   toDoTaskElement.appendChild(inputElement);
   toDoTaskElement.appendChild(optionsElement);
   toDosList.appendChild(toDoTaskElement);
+
+  console.log(toDosList);
   return;
 }
 
@@ -200,6 +199,7 @@ const populateTasks = () => {
     tasks = [...storage];
     return tasks;
   }
+  return tasks;
 };
 
 const getTasks = () => {
