@@ -227,7 +227,7 @@ const addCompleteListener = (elem) => {
 const removeAllChecked = () => {
   //make a copy of the tasks array
   const deleteTracker = [...tasks];
-  tasks = tasksArray.filter((task) => task.completed === false);
+  tasks = tasks.filter((task) => task.completed === false);
   //  update the indexes of all elements in tasks that are not completed
   updateAllIndex();
   //  update localStorage with incomplete tasks tasks 
