@@ -61,32 +61,71 @@ const createTextInput = (inputValue) => {
   return input;
 }
 
-const createOptions = () => {
-  const edit = document.createElement('i');
-  edit.classList.add('fa-solid', 'fa-pen-to-square');
-  edit.classList.add('hidden');
+// create the edit icon
+const edit = () => {
+  const editIcon = document.createElement('i');
+  editIcon.classList.add('fa-solid', 'fa-pen-to-square');
+  editIcon.classList.add('hidden');
+  return editIcon;
+};
 
-  const save = document.createElement('i');
-  save.classList.add('fa-solid', 'fa-floppy-disk');
-  save.classList.add('hidden');
+//create the save icon
+const save = () => {
+  const saveIcon = document.createElement('i');
+  saveIcon.classList.add('fa-solid', 'fa-floppy-disk');
+  saveIcon.classList.add('hidden');
+  return saveIcon;
+};
 
-  const trash = document.createElement('i');
-  trash.classList.add('fa-solid', 'fa-trash');
-  trash.classList.add('hidden');
+//create the trash icon
+const trash = () => {
+  const trashIcon = document.createElement('i');
+  trashIcon.classList.add('fa-solid', 'fa-trash');
+  trashIcon.classList.add('hidden');
+  return trashIcon;
+};
 
+//create ellipis
+const ellipse = () => {
   const ellipsis = document.createElement('i');
   ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
+  return ellipsis;
+}
 
-  addEditListener(edit, save);
-  addSaveListener(save, edit);
-  addDeleteListener(trash);
+
+const createOptions = () => {
+  const editIcon = edit();
+  // document.createElement('i');
+  // edit.classList.add('fa-solid', 'fa-pen-to-square');
+  // edit.classList.add('hidden');
+
+  //create the save icon
+  const saveIcon = save();
+  // document.createElement('i');
+  // save.classList.add('fa-solid', 'fa-floppy-disk');
+  // save.classList.add('hidden');
+
+  // create the trash icon
+  const trashIcon = trash();
+  // document.createElement('i');
+  // trash.classList.add('fa-solid', 'fa-trash');
+  // trash.classList.add('hidden');
+
+  //  create the ellipsis icon
+  const ellipsis = ellipse();
+  // document.createElement('i');
+  // ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
+
+  addEditListener(editIcon, saveIcon);
+  addSaveListener(saveIcon, editIcon);
+  addDeleteListener(trashIcon);
   addDisplayModifier(ellipsis);
 
   const optionsEl = document.createElement('div');
   optionsEl.classList.add('options');
-  optionsEl.appendChild(edit);
-  optionsEl.appendChild(save);
-  optionsEl.appendChild(trash);
+  optionsEl.appendChild(editIcon);
+  optionsEl.appendChild(saveIcon);
+  optionsEl.appendChild(trashIcon);
   optionsEl.appendChild(ellipsis);
   return optionsEl;
 };
@@ -113,10 +152,10 @@ const addCheckBoxListener = (elem) => {
   });
 };
 
-const addEditListener = (edit, save) => {
-  edit.addEventListener('click', (e) => {
+const addEditListener = (editIcon, saveIcon) => {
+  editIcon.addEventListener('click', (e) => {
     // hide edit icon & show save icon
-    this.toggleVisibility(edit, save);
+    toggleVisibility(editIcon, saveIcon);
     // get the input field and make it editable with focus
     const todoTask = e.target.parentElement.parentElement;
     const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
@@ -125,17 +164,20 @@ const addEditListener = (edit, save) => {
   });
 };
 
-const addSaveListener = (save, edit) => {
-  save.addEventListener('click', (e) => {
+const addSaveListener = (saveIcon, editIcon) => {
+  saveIcon.addEventListener('click', (e) => {
     // hide save icon & display edit icon
-    this.toggleVisibility(save, edit);
+    toggleVisibility(saveIcon, editIcon);
     // get the input field and make it uneditable
     const todoTask = e.target.parentElement.parentElement;
     const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
     inputFieldEl.setAttribute('readonly', 'readonly');
     // get the parameters for the edit
     const hiddenInputEl = todoTask.querySelector('input[name="index"]');
-    this.saveTaskEdit(inputFieldEl.value, hiddenInputEl.value);
+    saveTaskEdit(inputFieldEl.value, hiddenInputEl.value);
+    //  update localStoarge once task is edited
+    updateLocalStorage(tasks);
+
   });
 };
 
@@ -197,10 +239,10 @@ const addCompleteListener = (elem) => {
 //   });
 // }
 
-// const toggleVisibility =(hideThisEl, showThisEl) => {
-//   hideThisEl.classList.add('hidden');
-//   showThisEl.classList.remove('hidden');
-// }
+const toggleVisibility =(hideThisEl, showThisEl) => {
+  hideThisEl.classList.add('hidden');
+  showThisEl.classList.remove('hidden');
+}
 
 // get tasks from localStorage and populate out tasks array;
 const populateTasks = () => {
@@ -216,13 +258,13 @@ const getTasks = () => {
   return tasks;
 };
 
-// const saveTaskEdit = (editedTask, taskIndex) => {
-//   const index = +taskIndex;
-//   const elementIndex = index - 1;
-//   // update the task description
-//   tasksArray[elementIndex].description = editedTask;
-//   store.updateLocalStorage(tasksArray);
-// }
+const saveTaskEdit = (editedTask, taskIndex) => {
+  const index = +taskIndex;
+  const elementIndex = index - 1;
+  // update the task description
+  tasks[elementIndex].description = editedTask;
+  //store.updateLocalStorage(tasksArray);
+}
 
 const deleteTask = (index) => {
   const elementIndex = +index - 1;
