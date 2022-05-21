@@ -1,39 +1,42 @@
 import './style.css';
-import AppInterface from './ui.js';
+import { getTasksArrayLength, 
+  addTaskToToDosList, 
+  updatetasksArray,
+  checkStorage,
+  removeAllChecked } from './ui';
+//import {} from './storage.js';
 
 const form = document.querySelector('.todo-form');
 const input = document.querySelector('.add-item');
 //const toDosList = document.querySelector('.todos');
 const allCompleted = document.querySelector('#remove-completed-tasks');
 const refresh = document.querySelector('.fa-rotate');
-const userInterface = new AppInterface();
 
 // on form submit
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const inputValue = input.value;
   if (inputValue) {
-    const length = userInterface.getTasksArrayLength() + 1;
+    const length = getTasksArrayLength() + 1;
     const task = { description: inputValue, completed: false, index: length };
-    userInterface.addTaskToToDosList(task);
+    addTaskToToDosList(task);
     input.value = '';
-    //  update tasksArray & localStorage
-    userInterface.updatetasksArray(task);
+    updatetasksArray(task);
   }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const tasksArray = userInterface.checkStorage();
+  const tasksArray = checkStorage();
   if (tasksArray.length < 1) return;
   tasksArray.forEach((task) => {
-    userInterface.addTaskToToDosList(task);
+    addTaskToToDosList(task);
   });
 });
 
 allCompleted.addEventListener('click', () => {
-  userInterface.removeAllChecked();
+  removeAllChecked();
 });
 
 refresh.addEventListener('click', () => {
-  userInterface.removeAllChecked();
+  removeAllChecked();
 });

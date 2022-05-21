@@ -1,13 +1,10 @@
-let tasks = [];
+const checkLocalStorage = () => {
+  const tasksArray = localStorage.getItem('tasksArray');
+  return tasksArray ? JSON.parse(tasksArray) : [];
+};
 
-export default class Storage {
+const updateLocalStorage = (tasksArray) => {
+  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+};
 
-  checkLocalStorage = () => {
-    const tasksArray = localStorage.getItem('tasksArray');
-    return tasksArray ? JSON.parse(tasksArray) : [];
-  }
-
-  updateLocalStorage = (tasksArray) => {
-    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-  }
-}
+module.exports = {checkLocalStorage, updateLocalStorage }
