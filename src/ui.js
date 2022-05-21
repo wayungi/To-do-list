@@ -26,8 +26,6 @@ export default class AppInterface {
     const todoTaskEl = document.createElement('div');
     todoTaskEl.classList.add('todo-task');
     return todoTaskEl;
-
-    //return `<div class="todo-task">`+`</div>`;
   }
 
   hiddenInputElement = (index) => {
