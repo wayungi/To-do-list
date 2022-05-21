@@ -7,4 +7,4 @@ const updateLocalStorage = (tasksArray) => {
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 };
 
-module.exports = {checkLocalStorage, updateLocalStorage }
+module.exports = { checkLocalStorage, updateLocalStorage }
