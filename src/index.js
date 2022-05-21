@@ -25,7 +25,7 @@ form.addEventListener('submit', (e) => {
     const activity = { description: inputValue, completed: false, index: arrayLength() + 1 };
     const toDoTaskElement =  toDoTask();
     const hiddenInputEle = hiddenInputElement(activity.index);
-    const checkbox = createCheckBox(activi.completed);
+    const checkbox = createCheckBox(activity.completed);
     const inputElement = createTextInput(activity.description);
     const optionsElement = createOptions();
     // create object conatining dom elements for the doto activity

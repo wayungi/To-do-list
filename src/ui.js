@@ -23,6 +23,7 @@ const addTaskToToDosList = (elemObj) => {
 
 const updateTasks = (activity) => {
   tasks.push(activity);
+  console.log(tasks)
   return tasks;
 }
 
@@ -109,7 +110,6 @@ const addCheckBoxListener = (elem) => {
     }
     //update localStorage to reflect the checked status of task
     updateLocalStorage(tasks);
-    console.log('checkbox clicked');
   });
 };
 
@@ -144,8 +144,14 @@ const addDeleteListener = (elem) => {
     const todoTask = e.target.parentElement.parentElement;
     // index of element to be removed from array
     const index = todoTask.querySelector('input[name="index"]').value;
+    //  remove element from DOM
     todoTask.remove();
-    this.deleteTask(index);
+    //  remove element from tasks array and return its index
+    const elementIndex = deleteTask(index);
+    //  update the index of all elements after the element removed
+    updateIndex(elementIndex);
+    //  local storage is updated after the index update
+    updateLocalStorage(tasks);
   });
 };
 
@@ -218,20 +224,20 @@ const getTasks = () => {
 //   store.updateLocalStorage(tasksArray);
 // }
 
-// const deleteTask = (index) => {
-//   const elementIndex = +index - 1;
-//   tasksArray.splice(elementIndex, 1);
-//   this.updateIndex(elementIndex);
-//   return;
-// }
+const deleteTask = (index) => {
+  const elementIndex = +index - 1;
+  tasks.splice(elementIndex, 1);
+  //updateIndex(elementIndex);
+  return elementIndex;
+}
 
 // reduce the index of all elements after the element that was removed
-// const updateIndex = (startIndex) => {
-//   for (let i = startIndex; i < tasksArray.length; i += 1) {
-//     tasksArray[i].index -= 1;
-//   }
-//   store.updateLocalStorage(tasksArray);
-// }
+const updateIndex = (startIndex) => {
+  for (let i = startIndex; i < tasks.length; i += 1) {
+    tasks[i].index -= 1;
+  }
+  return;
+}
 
 // const updateAllIndex = () => {
 //   let assignedIndex = 0;
