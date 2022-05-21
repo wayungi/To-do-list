@@ -9,7 +9,7 @@ const addTaskToToDosList = (elemObj) => {
   // const toDoTaskElement = toDoTask();
   // const hiddenInputElement = hiddenInputElement(task.index);
   // const checkbox = createCheckBox(task.completed);
-//addCompleteListener(checkbox);
+  //addCompleteListener(checkbox);
   // const inputElement = createTextInput(task.description);
   // const optionsElement = createOptions();
 
@@ -76,10 +76,10 @@ const createOptions = () => {
   const ellipsis = document.createElement('i');
   ellipsis.classList.add('fa-solid', 'fa-ellipsis-vertical');
 
-  // addEditListener(edit, save);
-  // addSaveListener(save, edit);
-  // addDeleteListener(trash);
-  // addDisplayModifier(ellipsis);
+  addEditListener(edit, save);
+  addSaveListener(save, edit);
+  addDeleteListener(trash);
+  addDisplayModifier(ellipsis);
 
   const optionsEl = document.createElement('div');
   optionsEl.classList.add('options');
@@ -113,52 +113,52 @@ const addCheckBoxListener = (elem) => {
   });
 };
 
-// const addEditListener = (edit, save) => {
-//   edit.addEventListener('click', (e) => {
-//     // hide edit icon & show save icon
-//     this.toggleVisibility(edit, save);
-//     // get the input field and make it editable with focus
-//     const todoTask = e.target.parentElement.parentElement;
-//     const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
-//     inputFieldEl.removeAttribute('readonly');
-//     inputFieldEl.focus();
-//   });
-// };
+const addEditListener = (edit, save) => {
+  edit.addEventListener('click', (e) => {
+    // hide edit icon & show save icon
+    this.toggleVisibility(edit, save);
+    // get the input field and make it editable with focus
+    const todoTask = e.target.parentElement.parentElement;
+    const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
+    inputFieldEl.removeAttribute('readonly');
+    inputFieldEl.focus();
+  });
+};
 
-// const addSaveListener = (save, edit) => {
-//   save.addEventListener('click', (e) => {
-//     // hide save icon & display edit icon
-//     this.toggleVisibility(save, edit);
-//     // get the input field and make it uneditable
-//     const todoTask = e.target.parentElement.parentElement;
-//     const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
-//     inputFieldEl.setAttribute('readonly', 'readonly');
-//     // get the parameters for the edit
-//     const hiddenInputEl = todoTask.querySelector('input[name="index"]');
-//     this.saveTaskEdit(inputFieldEl.value, hiddenInputEl.value);
-//   });
-// };
+const addSaveListener = (save, edit) => {
+  save.addEventListener('click', (e) => {
+    // hide save icon & display edit icon
+    this.toggleVisibility(save, edit);
+    // get the input field and make it uneditable
+    const todoTask = e.target.parentElement.parentElement;
+    const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
+    inputFieldEl.setAttribute('readonly', 'readonly');
+    // get the parameters for the edit
+    const hiddenInputEl = todoTask.querySelector('input[name="index"]');
+    this.saveTaskEdit(inputFieldEl.value, hiddenInputEl.value);
+  });
+};
 
-// const addDeleteListener = (elem) => {
-//   elem.addEventListener('click', (e) => {
-//     const todoTask = e.target.parentElement.parentElement;
-//     // index of element to be removed from array
-//     const index = todoTask.querySelector('input[name="index"]').value;
-//     todoTask.remove();
-//     this.deleteTask(index);
-//   });
-// };
+const addDeleteListener = (elem) => {
+  elem.addEventListener('click', (e) => {
+    const todoTask = e.target.parentElement.parentElement;
+    // index of element to be removed from array
+    const index = todoTask.querySelector('input[name="index"]').value;
+    todoTask.remove();
+    this.deleteTask(index);
+  });
+};
 
 // on clicking ellipsis, display edit and delete icons
-// const addDisplayModifier = (elem) => {
-//   elem.addEventListener('click', (e) => {
-//     e.target.classList.add('hidden');
-//     const parent = e.target.parentElement;
-//     // display edit & delete buttons
-//     parent.querySelector('.fa-pen-to-square').classList.remove('hidden');
-//     parent.querySelector('.fa-trash').classList.remove('hidden');
-//   });
-// };
+const addDisplayModifier = (elem) => {
+  elem.addEventListener('click', (e) => {
+    e.target.classList.add('hidden');
+    const parent = e.target.parentElement;
+    // display edit & delete buttons
+    parent.querySelector('.fa-pen-to-square').classList.remove('hidden');
+    parent.querySelector('.fa-trash').classList.remove('hidden');
+  });
+};
 
 // Fade tasks marked as completed
 const addCompleteListener = (elem) => {
