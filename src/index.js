@@ -8,7 +8,6 @@ import { arrayLength,
          createTextInput,
          createOptions, 
          updateLocalStorage, 
-         getTasks,
          populateTasks, removeAllChecked } from './ui';
 
 const form = document.querySelector('.todo-form');
@@ -26,7 +25,7 @@ form.addEventListener('submit', (e) => {
     const activity = { description: inputValue, completed: false, index: arrayLength() + 1 };
     const toDoTaskElement =  toDoTask();
     const hiddenInputEle = hiddenInputElement(activity.index);
-    const checkbox = createCheckBox();
+    const checkbox = createCheckBox(activi.completed);
     const inputElement = createTextInput(activity.description);
     const optionsElement = createOptions();
     // create object conatining dom elements for the doto activity
@@ -49,11 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const tasks = populateTasks();
   if (tasks.length < 1) return;
   tasks.forEach((task) => {
-    const activity = task
     const toDoTaskElement =  toDoTask();
-    const hiddenInputEle = hiddenInputElement(activity.index);
-    const checkbox = createCheckBox();
-    const inputElement = createTextInput(activity.desecription);
+    const hiddenInputEle = hiddenInputElement(task.index);
+    const checkbox = createCheckBox(task.completed);
+    const inputElement = createTextInput(task.description);
     const optionsElement = createOptions();
     // create object conatining dom elements for the doto activity
     const elemObj = {
@@ -67,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addTaskToToDosList(elemObj);
   });
 });
+
+
 
 allCompleted.addEventListener('click', () => {
   removeAllChecked();

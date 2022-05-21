@@ -5,12 +5,11 @@ const toDosList = document.querySelector('.todos');
 const arrayLength = () => tasks.length;
 
 const addTaskToToDosList = (elemObj) => {
-  //console.log(elemObj);
   const { toDoTaskElement, hiddenInputEle, checkbox,inputElement, optionsElement, tasks,toDosList } = elemObj;
   // const toDoTaskElement = toDoTask();
   // const hiddenInputElement = hiddenInputElement(task.index);
   // const checkbox = createCheckBox(task.completed);
-//  addCompleteListener(checkbox); ****************************************************
+//addCompleteListener(checkbox);
   // const inputElement = createTextInput(task.description);
   // const optionsElement = createOptions();
 
@@ -19,8 +18,6 @@ const addTaskToToDosList = (elemObj) => {
   toDoTaskElement.appendChild(inputElement);
   toDoTaskElement.appendChild(optionsElement);
   toDosList.appendChild(toDoTaskElement);
-
-  console.log(toDosList);
   return;
 }
 
@@ -49,7 +46,8 @@ const createCheckBox = (state) => {
   if (state) {
     checkbox.setAttribute('checked', 'checked');
   }
-  //addCheckBoxListener(checkbox);
+  addCheckBoxListener(checkbox);
+  //addCompleteListener(checkbox);
   return checkbox;
 }
 
@@ -94,22 +92,25 @@ const createOptions = () => {
 
 const updateLocalStorage = (updatedArray) => {
   localStorage.setItem('tasks', JSON.stringify(updatedArray));
-  console.log('updated');
   return;
 }
 
-// const addCheckBoxListener = (elem) => {
-//   elem.addEventListener('click', (e) => {
-//     const todoTask = e.target.parentElement;
-//     const index = +todoTask.querySelector('input[name="index"]').value;
-//     const elementIndex = index - 1;
-//     if (e.target.checked) {
-//       updateCompleted(elementIndex, true);
-//     } else {
-//       updateCompleted(elementIndex, false);
-//     }
-//   });
-// };
+const addCheckBoxListener = (elem) => {
+  elem.addEventListener('click', (e) => {
+    const todoTask = e.target.parentElement;
+    const index = +todoTask.querySelector('input[name="index"]').value;
+    const elementIndex = index - 1;
+    if (e.target.checked) {
+      updateCompleted(elementIndex, true);
+    } else {
+      updateCompleted(elementIndex, false);
+    }
+
+    //update localStorage to reflect the checked status of task
+    updateLocalStorage(tasks);
+    console.log('checkbox clicked');
+  });
+};
 
 // const addEditListener = (edit, save) => {
 //   edit.addEventListener('click', (e) => {
@@ -158,19 +159,19 @@ const updateLocalStorage = (updatedArray) => {
 //   });
 // };
 
-// const addCompleteListener = (elem) => {
-//   elem.addEventListener('click', (e) => {
-//     const todoTask = e.target.parentElement;
-//     const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
-//     if (e.target.checked) {
-//       inputFieldEl.classList.remove('task-color');
-//       inputFieldEl.classList.add('completed');
-//     } else {
-//       inputFieldEl.classList.add('task-color');
-//       inputFieldEl.classList.remove('completed');
-//     }
-//   });
-// };
+const addCompleteListener = (elem) => {
+  elem.addEventListener('click', (e) => {
+    const todoTask = e.target.parentElement;
+    const inputFieldEl = todoTask.querySelector('input[name="my-task"]');
+    if (e.target.checked) {
+      inputFieldEl.classList.remove('task-color');
+      inputFieldEl.classList.add('completed');
+    } else {
+      inputFieldEl.classList.add('task-color');
+      inputFieldEl.classList.remove('completed');
+    }
+  });
+};
 
 // const removeAllChecked = () => {
 //   const deleteTracker = [...tasksArray];
@@ -237,10 +238,12 @@ const getTasks = () => {
 //   });
 // }
 
-// const updateCompleted = (elementIndex, state) => {
-//   tasksArray[elementIndex].completed = state;
-//   store.updateLocalStorage(tasksArray);
-// };
+// Toggle the completed status of the task (true/false)
+const updateCompleted = (elementIndex, state) => {
+  tasks[elementIndex].completed = state;
+  //store.updateLocalStorage(tasksArray);
+  return;
+};
 
 module.exports = {
   arrayLength,
