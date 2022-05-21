@@ -47,7 +47,7 @@ const createCheckBox = (state) => {
     checkbox.setAttribute('checked', 'checked');
   }
   addCheckBoxListener(checkbox);
-  //addCompleteListener(checkbox);
+  addCompleteListener(checkbox);
   return checkbox;
 }
 
@@ -101,11 +101,12 @@ const addCheckBoxListener = (elem) => {
     const index = +todoTask.querySelector('input[name="index"]').value;
     const elementIndex = index - 1;
     if (e.target.checked) {
+      // toggle 'completed' field in task to true
       updateCompleted(elementIndex, true);
     } else {
+      // toggle 'completed' field in task to false
       updateCompleted(elementIndex, false);
     }
-
     //update localStorage to reflect the checked status of task
     updateLocalStorage(tasks);
     console.log('checkbox clicked');
@@ -159,6 +160,7 @@ const addCheckBoxListener = (elem) => {
 //   });
 // };
 
+// Fade tasks marked as completed
 const addCompleteListener = (elem) => {
   elem.addEventListener('click', (e) => {
     const todoTask = e.target.parentElement;
@@ -171,6 +173,7 @@ const addCompleteListener = (elem) => {
       inputFieldEl.classList.remove('completed');
     }
   });
+  return;
 };
 
 // const removeAllChecked = () => {
